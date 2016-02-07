@@ -5,134 +5,33 @@
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
       <link type="text/css" rel="stylesheet" href="/css/style.css"  media="screen,projection"/>
+      <!-- todo insert bootstrap -->
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
 
-      <div
-      		class="parallax-image-wrapper parallax-image-wrapper-100"
-      		data-anchor-target="#dragons + .gap"
-      		data-bottom-top="transform:translate3d(0px, 200%, 0px)"
-      		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
-
-      		<div
-      			class="parallax-image parallax-image-100"
-      			style="background-image:url(img/office.jpg)"
-      			data-anchor-target="#dragons + .gap"
-      			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
-      			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
-      		></div>
-      		<!--the +/-80% translation can be adjusted to control the speed difference of the image-->
-      	</div>
-
-      	<div
-      		class="parallax-image-wrapper parallax-image-wrapper-100"
-      		data-anchor-target="#bacons + .gap"
-      		data-bottom-top="transform:translate3d(0px, 200%, 0px)"
-      		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
-
-      		<div
-      			class="parallax-image parallax-image-100"
-      			style="background-image:url(img/nature.jpg)"
-      			data-anchor-target="#bacons + .gap"
-      			data-bottom-top="transform: translate3d(0px, -80%, 0px);"
-      			data-top-bottom="transform: translate3d(0px, 80%, 0px);"
-      		></div>
-      	</div>
-
-      	<div
-      		class="parallax-image-wrapper parallax-image-wrapper-50"
-      		data-anchor-target="#kittens + .gap"
-      		data-bottom-top="transform:translate3d(0px, 300%, 0px)"
-      		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
-
-      		<div
-      			class="parallax-image parallax-image-50"
-      			style="background-image:url(img/code.jpg)"
-      			data-anchor-target="#kittens + .gap"
-      			data-bottom-top="transform: translate3d(0px, -60%, 0px);"
-      			data-top-bottom="transform: translate3d(0px, 60%, 0px);"
-      		></div>
-      	</div>
-
-        <div
-      		class="parallax-image-wrapper parallax-image-wrapper-50"
-      		data-anchor-target="#dogs + .gap"
-      		data-bottom-top="transform:translate3d(0px, 300%, 0px)"
-      		data-top-bottom="transform:translate3d(0px, 0%, 0px)">
-
-      		<div
-      			class="parallax-image parallax-image-50"
-      			style="background-image:url(img/contact.jpg)"
-      			data-anchor-target="#dogs + .gap"
-      			data-bottom-top="transform: translate3d(0px, -60%, 0px);"
-      			data-top-bottom="transform: translate3d(0px, 60%, 0px);"
-      		></div>
-      	</div>
-
-      	<div id="skrollr-body">
-          <div class="gap gap-100" style="background-image:url(img/office.jpg);"></div>
-          <div class="header" id="dragons">
-
-      		</div>
-      		<div class="gap gap-100" style="background-image:url(img/nature.jpg);"></div>
-      		<div class="content" id="bacons">
-      			<p>Landjaeger chicken ham fatback sausage hamburger, tri-tip capicola pastrami pancetta ribeye turducken. Rump shank turkey pig kevin sausage meatloaf tenderloin drumstick short ribs short loin. Prosciutto spare ribs chuck, pork strip steak pork chop swine bacon turkey shoulder andouille. Jowl landjaeger chicken corned beef. Ham hock kielbasa pancetta ground round sausage. Spare ribs porchetta pastrami filet mignon drumstick ball tip. Beef ribs prosciutto kevin, landjaeger shoulder ham hock ham brisket sirloin chuck t-bone drumstick kielbasa pork chop.</p>
 
 
-      		</div>
-      		<div class="gap gap-100" style="background-image:url(img/code.jpg);"></div>
-      		<div class="content content-full" id="kittens">
-      			Here be kittens
-      		</div>
-      		<div class="gap gap-50" style="background-image:url(img/code.jpg);"></div>
-      		<div class="content" id="almost_done">
-      			Images from <a href="http://placekitten.com/attribution.html">http://placekitten.com/</a>, thanks!
-      		</div>
-          <div class="gap gap-50" style="background-image:url(img/contact.jpg);"></div>
-          <div class="content" id="done">
-      			Images from <a href="http://placekitten.com/attribution.html">http://placekitten.com/</a>, roo!
-      		</div>
-      	</div>
-
-
-
-
-      Name on left hand side Navigation top panel with top who what where
-
-      image one
-
-      with where links
-
-      image two
-
-      who with a picture
-
-      image three
-
-      what - portfoliio page with links (placeholders)
-
-      image four
-
-      where
-
-      with where links
-
-      footer - copyright stuff and made with love thingy.
-
-
+      <div id="skrollr-body">
+          <div class="gap gap-50" style="background-image:url(img/office1.jpg);">
+          </div>
+          <div class="gap gap-50" style="background-image:url(img/ski.jpg);">
+          </div>
+      		<div class="gap gap-50" style="background-image:url(img/code.jpg);">
+          </div>
+      		<div class="gap gap-50" style="background-image:url(img/contact.jpg);">
+          </div>
+      </div>
 
 
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src=skrollr.min.js"></script>
-      <script type="text/javascript">
-      	skrollr.init({
-      		smoothScrolling: false,
-      		mobileDeceleration: 0.004
-      	});
-      	</script>
+      <script type="text/javascript" src="lib/skrollr.min.js"></script>
+         <script type="text/javascript">
+         var s = skrollr.init();
+         </script>
+
 
     </body>
 </html>
