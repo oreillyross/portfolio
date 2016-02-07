@@ -34,6 +34,4 @@ node_modules
 
 # Ignore all the images - no need to really upload these
 
-**/*.xcf
-**/*.jpg
-**/*.png
+img
