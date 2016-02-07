@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+
 
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -15,32 +16,43 @@
     </head>
     <body>
 
+      <nav class = "navbar navbar-default" role = "navigation">
 
+     <div class = "navbar-header">
+        <a class = "navbar-brand" href = "#">Ross O'Reilly</a>
+     </div>
 
-      <div id="skrollr-body">
-          <div class="gap gap-50" style="background-image:url(img/office1.jpg);">
-            <nav class="navbar navbar-default navbar-fixed-top">
-              <div class="container">
-                Ross O'Reilly <span class="alert alert-success" align="right"> Home  |  Who  |  What  |  Where  </span>
-              </div>
-            </nav>
-          </div>
-          <div class="gap gap-50" style="background-image:url(img/ski1.jpg);">
-          </div>
-      		<div class="gap gap-50" style="background-image:url(img/code1.jpg);">
-          </div>
-      		<div class="gap gap-50" style="background-image:url(img/contact1.jpg);">
-          </div>
-      </div>
+     <div>
+        <ul class = "nav navbar-nav navbar-right">
+           <li class = "active"><a href = "#">Home</a></li>
+           <li><a href = "#">Who</a></li>
+           <li><a href = "#">What</a></li>
+           <li><a href = "#">Where</a></li>
+
+              </ul>
+           </li>
+        </ul>
+     </div>
+  </nav>
+  <div class="container">
+
+    <div class="home"></div>
+    <div class="who"></div>
+    <div class="what"></div>
+    <div class="where"></div>
+
+  </div>
+  <nav class="navbar navbar-bottom">
+     <div class="container">
+       <p class="footer-block">Made with love by Faktor 10</p>
+     </div>
+   </nav>
 
 
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="lib/skrollr.min.js"></script>
-         <script type="text/javascript">
-         var s = skrollr.init();
-         </script>
+      <script src="lib/parallax.min.js" type="text/javascript"></script>
 
 
     </body>
