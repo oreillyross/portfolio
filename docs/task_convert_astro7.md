@@ -10,9 +10,11 @@
 ## Goal
 
 Replace the hand-rolled static one-pager (`index.html` + `css/site.css` + `js/site.js`)
-with an Astro 7 site scaffolded from AstroWind. Keep the brand (lime/violet/amber/blue
+with an Astro 7 site scaffolded from AstroWind. Keep the visual identity (lime/violet/amber/blue
 accents, Space Grotesk / Inter / JetBrains Mono) and lift the palette so the page reads
-brighter. The home page is a landing page. The blog becomes a real, routed section.
+brighter, in both light and dark mode. The home page is a landing page, with an `/about`
+page and a real, routed blog alongside it. The site is rebranded from Faktor 10 to
+**Haagsoft** on `haagsoft.xyz`.
 
 ## Context (verified 2026-09-24)
 
@@ -27,6 +29,9 @@ brighter. The home page is a landing page. The blog becomes a real, routed secti
   `Contact`, `BlogLatestPosts`.
 - The current site has no `package.json` and no CI. It is deployed by Vercel's GitHub
   integration (the `portfolio` project, with preview deploys on PRs), set up outside the repo.
+- The brand is now **Haagsoft** (`haagsoft.xyz`), and each app lives on its own subdomain:
+  `pantler.haagsoft.xyz`, `horizon.haagsoft.xyz`. The current site still says "Faktor 10",
+  "F10" and `factor-10.dev` in `index.html`, `README.md`, `css/site.css` and `js/site.js`.
 - Current content lives in: `index.html` (all copy), `blog/howibuiltpantler.md` (one post, no
   frontmatter), `img/*.jpg`, `docs/CLAUDE.md` (positioning notes).
 
@@ -34,10 +39,10 @@ brighter. The home page is a landing page. The blog becomes a real, routed secti
 
 1. **Scaffold, don't hand-port.** Copy AstroWind into the repo root, then delete demo pages
    and widgets we don't use. That keeps its blog, SEO, sitemap and RSS plumbing for free.
-2. **Dark-first, lifted.** Keep dark as the default mode but raise the base from near-black to
-   a charcoal/slate and give sections alternating lighter surfaces. Proposed tokens in 2.1.
-   Light mode stays available through AstroWind's toggle; it's allowed to be the less
-   polished of the two for now.
+2. **Two first-class themes, both lifted.** Ship light and dark mode with AstroWind's toggle,
+   defaulting to the visitor's OS setting (`ui.theme: 'system'`). Dark mode moves from
+   near-black to a charcoal/slate with alternating lighter section surfaces, and light mode
+   uses a warm paper background. Both get the same level of polish. Proposed tokens in 2.1.
 3. **Motion is minimal.** Drop Lenis, the custom cursor, the loader and the grain overlay. Use
    CSS reveals that respect `prefers-reduced-motion`. The pinned card stack and horizontal
    rail are optional follow-ups (Phase 5), not blockers for launch.
@@ -45,6 +50,9 @@ brighter. The home page is a landing page. The blog becomes a real, routed secti
    the new site is live. The HTML5 UP site in `legacy/` is deleted in Phase 6.
 5. **Keep Vercel, build static.** Vercel already deploys this repo, so it stays the host. The
    Astro build stays `output: 'static'`, so no adapter is needed.
+6. **Rebrand to Haagsoft.** Every "Faktor 10", "Faktor10", "Factor 10", "F10" and
+   `factor-10.dev` reference becomes Haagsoft / `haagsoft.xyz` (subtask 1.6). Live projects
+   link out to their subdomains.
 
 ---
 
@@ -71,26 +79,37 @@ Goal: a clean AstroWind build running from the repo root, with the old site park
 
 ## Phase 1: Strip and configure
 
-Goal: only the pages and widgets we need, with Faktor 10 metadata.
+Goal: only the pages and widgets we need, with Haagsoft branding and metadata.
 
 - [ ] **1.1 Delete the demo pages.** `src/pages/homes/*`, `src/pages/landing/*`,
-  `pricing.astro`, `services.astro`, `about.astro` (or keep `about` if you want a longer bio
-  page later), and the demo posts in `src/data/post/*`.
-- [ ] **1.2 `src/config.yaml`.** Site name `Faktor 10`, `site: https://factor-10.dev`, title
-  template `%s — Faktor 10`, the description from the current `<meta name="description">`,
-  a real OG image, the Twitter handle (or remove it), `ui.theme: 'dark'` (see decision 2),
-  and remove `googleSiteVerificationId`.
-- [ ] **1.3 `src/navigation.ts`.** Header links: Work, Stack, Studio, Blog, and a "Let's talk"
-  CTA. Footer: email `devguy@duck.com`, GitHub `oreillyross`, RSS. Remove the AstroWind
+  `pricing.astro`, `services.astro`, and the demo posts in `src/data/post/*`. Keep
+  `about.astro`, which gets rewritten in 3.13.
+- [ ] **1.2 `src/config.yaml`.** Site name `Haagsoft`, `site: https://haagsoft.xyz`, title
+  template `%s — Haagsoft`, the description from the current `<meta name="description">`
+  (reworded for Haagsoft), a real OG image, the Twitter handle (or remove it),
+  `ui.theme: 'system'` (see decision 2), and remove `googleSiteVerificationId`.
+- [ ] **1.3 `src/navigation.ts`.** Header links: Work, Stack, Studio, About, Blog, and a
+  "Let's talk" CTA. Footer: email `devguy@duck.com`, GitHub `oreillyross`, a "Projects"
+  column linking to `pantler.haagsoft.xyz` and `horizon.haagsoft.xyz`, and RSS. Remove the AstroWind
   links and the attribution columns.
 - [ ] **1.4 Assets.** Move the reused `img/*.jpg` into `src/assets/images/`. Replace the
-  favicons with the `f10` mark (currently an inline SVG in `index.html`). Drop the `.xcf`
+  favicons and the `Logo.astro` wordmark with a Haagsoft mark. A quick version is the
+  current inline-SVG `f10` favicon reworked as `hs` or `H`, in lime on the page background. Drop the `.xcf`
   source files or keep them outside `src/`.
 - [ ] **1.5 Prune unused widgets.** Delete the widgets nothing imports once Phase 3 is done;
   leave them in place until then.
+- [ ] **1.6 Rebrand to Haagsoft.** Rename every "Faktor 10", "Faktor10", "Factor 10",
+  "factor-10" and "F10" in the new `src/` content, `package.json` `name`, `README.md` and
+  `docs/CLAUDE.md` to Haagsoft. Replace every `factor-10.dev` URL (site config, canonical/OG
+  URLs, the contact link) with `https://haagsoft.xyz`. Leave `legacy/` untouched. Reword copy
+  that plays on the old name, for example "Faktor 10 is a microservices-first studio…" in the
+  manifesto. Check with:
+  `grep -rniE "faktor|factor[- ]?10|\bF10\b" --exclude-dir={node_modules,dist,.git,legacy} .`,
+  which should come back empty.
 
-**Done when:** there is no AstroWind branding in the built output (`grep -ri astrowind dist/`
-is empty apart from licence credits) and the build is green.
+**Done when:** there is no AstroWind or Faktor 10 branding in the built output
+(`grep -riE "astrowind|faktor|factor-10" dist/` is empty apart from licence credits) and
+the build is green.
 
 ## Phase 2: Theme (brand, brighter)
 
@@ -110,8 +129,17 @@ Goal: same identity, visibly less dark.
   | Primary (CTA, focus) | `#ccff33` | `#ccff33` |
   | Accents | violet `#b09bff`, amber `#ffa14a`, blue `#7cc9ff` | unchanged, and used more widely as section tints |
 
-  Light mode: paper `#f7f5f0` background, ink text, and a darkened lime (around `#5a7a00`)
-  for text and links so it passes contrast.
+  | Role | New (light mode) |
+  | --- | --- |
+  | Page background | `#f7f5f0` (paper) |
+  | Raised surface / cards | `#ffffff` |
+  | Alternate section band | `#eeebe3` |
+  | Heading text | `#16181d` |
+  | Body text | `#16181d` @ 78% |
+  | Rules / borders | `#16181d` @ 14% |
+  | Primary fill (buttons, highlights) | `#ccff33`, with ink text on it |
+  | Primary as text or links | darkened lime, around `#4d6b00` (AA on paper) |
+  | Accents | violet, amber and blue darkened for text use, full strength for tints |
 - [ ] **2.2 Brightening beyond hex values.** Add soft accent glows or gradients behind the hero
   and CTA (the current `hero__glow`, made stronger). Use alternating section bands. Give
   project cards tinted backgrounds (lime/violet/amber/blue at around 10–15%) instead of
@@ -121,11 +149,15 @@ Goal: same identity, visibly less dark.
   JetBrains Mono (used for labels, tags and section numbers).
 - [ ] **2.4 Details.** Carry over `::selection` (lime on ink), `:focus-visible` (lime outline),
   and the mono `sectionLabel` style (`01 Manifesto`) as a small reusable component.
-- [ ] **2.5 Contrast check.** Every text/background pair meets WCAG AA in both modes; check
+- [ ] **2.5 Theme toggle.** Keep AstroWind's `ToggleTheme` in the header. There must be no
+  flash of the wrong theme on load (`ApplyColorMode` runs inline in `<head>`), the choice
+  persists across pages, and `theme-color` follows the active mode.
+- [ ] **2.6 Contrast check.** Every text/background pair meets WCAG AA in both modes; check
   with axe or Lighthouse.
 
-**Done when:** a side-by-side screenshot against `legacy/scroll-site/` is recognisably the
-same brand and clearly lighter, and the Lighthouse accessibility score is at least 95.
+**Done when:** in both modes, a side-by-side screenshot against `legacy/scroll-site/` is
+recognisably the same visual identity and clearly lighter, and the Lighthouse accessibility
+score is at least 95.
 
 ## Phase 3: Landing page (`src/pages/index.astro`)
 
@@ -138,11 +170,11 @@ over verbatim unless 3.9 changes it.
 | 3.2 | Marquee | small custom `Marquee.astro` | Pure CSS keyframes, `aria-hidden`, paused under reduced motion. |
 | 3.3 | 01 Manifesto | `Content` | Big statement plus two columns. |
 | 3.4 | 02 How I work (5 principles) | `Steps` or `Features2` | `id="studio"`. |
-| 3.5 | 03 Active builds (Pantler, Horizon, Beliefs, Tiny GPT, Verity) | `Projects` | `id="work"`. Status badge, description, tag list, accent per card. Move the data to `src/data/projects.ts` so cards aren't hard-coded in markup. |
+| 3.5 | 03 Active builds (Pantler, Horizon, Beliefs, Tiny GPT, Verity) | `Projects` | `id="work"`. Status badge, description, tag list, accent per card, and an optional `url`. Move the data to `src/data/projects.ts` so cards aren't hard-coded in markup. Links: see 3.14. |
 | 3.6 | 04 Stack | `Features` (list) or `Integrations` | `id="stack"`. Six rows. |
 | 3.7 | 05 The coworker | `Quote` | |
 | 3.8 | Blog teaser (new) | `BlogLatestPosts` | Shows the latest 3 posts, placed after the coworker section. |
-| 3.10 | 06 Contact | `CallToAction` | `id="contact"`. "Let's build something small that compounds." plus email and GitHub links. |
+| 3.10 | 06 Contact | `CallToAction` | `id="contact"`. "Let's build something small that compounds." plus email, GitHub and `haagsoft.xyz` links. |
 
 - [ ] **3.1–3.8, 3.10:** build each row of the table above.
 - [ ] **3.9 Copy pass (optional, flagged).** `docs/CLAUDE.md` puts the positioning on
@@ -151,11 +183,25 @@ over verbatim unless 3.9 changes it.
   separate copy pass so the diff stays reviewable.
 - [ ] **3.11 Anchors.** Header links scroll to `#work`, `#stack`, `#studio`, `#contact`, and
   work from `/blog/*` pages too (`/#work`).
-- [ ] **3.12 SEO parity.** Title, description, OG and Twitter tags match the current
-  `<head>`, and `theme-color` uses the new background.
+- [ ] **3.12 SEO parity.** Title, description, OG and Twitter tags carry over from the
+  current `<head>` but under the Haagsoft name and `haagsoft.xyz` URLs.
+- [ ] **3.13 `/about` page.** Rewrite `src/pages/about.astro` as a personal page: who Ross
+  is, why Haagsoft exists, the specialism (agentic reliability, evals, harness engineering,
+  type-safe TypeScript, LangChain; see `docs/CLAUDE.md`), how an engagement works, a photo,
+  and a contact CTA. Reuse the principles and stack copy instead of duplicating it. Draft the
+  copy from `docs/CLAUDE.md` and the current site, then leave it for Ross to edit before
+  merge.
+- [ ] **3.14 Project links.** The project cards link to the live apps:
+  - Pantler → `https://pantler.haagsoft.xyz`
+  - Horizon → `https://horizon.haagsoft.xyz`
 
-**Done when:** every section and link from `legacy/scroll-site/index.html` exists on `/`,
-the page is usable with JS disabled, and it looks right at 375px and at 1440px.
+  The whole card is the primary link, with an "Open app ↗" label. External links use
+  `rel="noopener"`. Projects without a `url` (Beliefs, Tiny GPT, Verity) render as plain
+  cards. Add the same two links to the footer "Projects" column (1.3).
+
+**Done when:** every section from `legacy/scroll-site/index.html` exists on `/` (rebranded),
+`/about` renders, the Pantler and Horizon cards open their subdomains, the page is usable
+with JS disabled, and it looks right at 375px and at 1440px in both themes.
 
 ## Phase 4: Blog
 
@@ -168,7 +214,8 @@ Goal: `/blog` lists posts, and each post has its own page and shows up in RSS.
   "languge", "localiation"). Keep the voice.
 - [ ] **4.3 Blog config.** Choose between `/blog/%slug%` and `/%slug%` permalinks and set
   `postsPerPage`. Categories on, tags `noindex` (the AstroWind default).
-- [ ] **4.4 Link from the Pantler card.** The Pantler project card links to the post.
+- [ ] **4.4 Link from the Pantler card.** The Pantler card gets a secondary "How I built it"
+  link to the post, next to its main link to `pantler.haagsoft.xyz` (3.14).
 - [ ] **4.5 RSS and sitemap.** Check that `/rss.xml` and `sitemap-index.xml` include the post
   with the production domain.
 
@@ -195,9 +242,13 @@ all content immediately.
 
 ## Phase 6: Ship and clean up
 
-- [ ] **6.1 Production on Vercel.** Confirm `factor-10.dev` points at the Vercel project,
-  the production deploy from `main` is green, and redirects or headers in `vercel.json` are
-  correct.
+- [ ] **6.1 Production on Vercel.** Add `haagsoft.xyz` (and `www.haagsoft.xyz`, redirecting
+  to the apex) as domains on the Vercel `portfolio` project. The production deploy from
+  `main` must be green. Make sure this apex project doesn't clash with the `pantler.` and
+  `horizon.` subdomains, which are served by their own projects.
+- [ ] **6.1b Old domain.** If `factor-10.dev` is still registered, add it to the same
+  project with a permanent redirect to `https://haagsoft.xyz` so old links keep working.
+  Otherwise let it lapse.
 - [ ] **6.2 CI.** A GitHub Action on PRs runs `npm ci && npm run check && npm run build`.
 - [ ] **6.3 Docs.** Rewrite `README.md` for the Astro workflow (dev, build, where copy lives,
   how to add a post or project, how to change theme tokens). Move `docs/CLAUDE.md` to a root
@@ -206,7 +257,7 @@ all content immediately.
   HTML5 UP and scroll-site versions), plus the top-level `blog/`, `css/`, `js/`, `img/` if
   anything is left.
 - [ ] **6.5 Post-launch check.** Check 404, OG preview (share the URL once), RSS in a reader,
-  Lighthouse on production.
+  Lighthouse on production in both themes, and that the Pantler and Horizon links resolve.
 
 ---
 
@@ -217,9 +268,15 @@ One PR per phase keeps each diff reviewable: **P0+P1** (scaffold and strip), **P
 **P6** (ship). P2 and P3 can be merged into one PR if iterating on colour needs the real
 sections on screen.
 
+## Resolved questions (2026-09-24)
+
+- **Light mode?** Yes, as a first-class theme alongside dark (decision 2, 2.1, 2.5).
+- **`/about` page?** Yes (1.1, 1.3, 3.13).
+- **Faktor 10 vs `factor-10.dev`?** The brand is now Haagsoft on `haagsoft.xyz`, with apps on
+  subdomains (decision 6, 1.6, 3.14, 6.1b).
+- **Host?** Vercel (decision 5, 0.6, 6.1).
+
 ## Open questions
 
-- Keep a light mode at all, or ship `dark:only` with the lifted palette?
-- Keep an `/about` page for a longer bio, or stay single-page plus blog?
-- Brand spelling: the site says "Faktor 10" but the domain is `factor-10.dev`. Is that
-  intentional?
+- Is `factor-10.dev` still registered, and should it redirect (6.1b)?
+- Is there a Haagsoft logo, or should 1.4 ship the simple text mark?
