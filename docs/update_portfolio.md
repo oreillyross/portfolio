@@ -1,6 +1,6 @@
 This should form the next step of my marketing journey.
 
-I am the Agentic AI Reliability Engineer.
+I am the Agentic AI Reliability Engineer. I test, instrument and harden autonomous AI systems before they are trusted with real work.
 - Focssuing on the following
 
 - 1. Behavioral reliability
