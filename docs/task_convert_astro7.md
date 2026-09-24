@@ -25,7 +25,8 @@ brighter. The home page is a landing page. The blog becomes a real, routed secti
 - AstroWind already ships widgets that line up with the current sections: `Hero`/`HeroText`,
   `Content`, `Steps`/`Features*`, `Projects`, `Integrations`, `Quote`, `CallToAction`,
   `Contact`, `BlogLatestPosts`.
-- The current site has no `package.json`, no CI and no deploy config in the repo.
+- The current site has no `package.json` and no CI. It is deployed by Vercel's GitHub
+  integration (the `portfolio` project, with preview deploys on PRs), set up outside the repo.
 - Current content lives in: `index.html` (all copy), `blog/howibuiltpantler.md` (one post, no
   frontmatter), `img/*.jpg`, `docs/CLAUDE.md` (positioning notes).
 
@@ -42,8 +43,8 @@ brighter. The home page is a landing page. The blog becomes a real, routed secti
    rail are optional follow-ups (Phase 5), not blockers for launch.
 4. **Old sites move to `legacy/`.** The current scroll site goes to `legacy/scroll-site/` until
    the new site is live. The HTML5 UP site in `legacy/` is deleted in Phase 6.
-5. **Deploy target is static.** It's a pure static build, so the host can be decided in
-   Phase 6 without code changes.
+5. **Keep Vercel, build static.** Vercel already deploys this repo, so it stays the host. The
+   Astro build stays `output: 'static'`, so no adapter is needed.
 
 ---
 
@@ -55,14 +56,16 @@ Goal: a clean AstroWind build running from the repo root, with the old site park
   (keep `img/` handy, the images get reused in 1.4).
 - [ ] **0.2 Import AstroWind.** Copy the template into the root (degit or a shallow clone
   without `.git`): `src/`, `public/`, `astro.config.ts`, `package.json`, `tsconfig.json`,
-  `eslint.config.js`, prettier config, `vendor/`. Skip `Dockerfile`, `docker-compose.yml`,
-  `nginx/`, `netlify.toml`, `vercel.json`, `wrangler.jsonc` and `sandbox.config.json` for now.
-  Pick the right one back up in Phase 6.
+  `eslint.config.js`, prettier config, `vendor/`, `vercel.json`. Skip `Dockerfile`,
+  `docker-compose.yml`, `nginx/`, `netlify.toml`, `wrangler.jsonc` and `sandbox.config.json`.
 - [ ] **0.3 Pin the toolchain.** Add `.nvmrc` (Node 22 LTS ≥ 22.22.3) and `engines`. Decide
   npm or pnpm and commit the lockfile.
 - [ ] **0.4 Merge `.gitignore`.** Add `node_modules/`, `dist/`, `.astro/`.
 - [ ] **0.5 Smoke test.** `npm i && npm run build && npm run check` pass on the untouched
   template.
+- [ ] **0.6 Vercel project settings.** Framework preset Astro, build command `npm run build`,
+  output directory `dist`, and a Node version that matches `.nvmrc`. The PR preview deploy
+  must go green.
 
 **Done when:** `npm run dev` serves the stock AstroWind site and `npm run check` is green.
 
@@ -192,9 +195,9 @@ all content immediately.
 
 ## Phase 6: Ship and clean up
 
-- [ ] **6.1 Choose the host.** Cloudflare Pages, Netlify or GitHub Pages (static `dist/`).
-  Restore the matching AstroWind config file from 0.2 or add a GitHub Actions workflow.
-  Point `factor-10.dev` at it.
+- [ ] **6.1 Production on Vercel.** Confirm `factor-10.dev` points at the Vercel project,
+  the production deploy from `main` is green, and redirects or headers in `vercel.json` are
+  correct.
 - [ ] **6.2 CI.** A GitHub Action on PRs runs `npm ci && npm run check && npm run build`.
 - [ ] **6.3 Docs.** Rewrite `README.md` for the Astro workflow (dev, build, where copy lives,
   how to add a post or project, how to change theme tokens). Move `docs/CLAUDE.md` to a root
@@ -220,4 +223,3 @@ sections on screen.
 - Keep an `/about` page for a longer bio, or stay single-page plus blog?
 - Brand spelling: the site says "Faktor 10" but the domain is `factor-10.dev`. Is that
   intentional?
-- Hosting preference (see 6.1)?
