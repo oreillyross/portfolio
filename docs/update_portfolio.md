@@ -1,0 +1,24 @@
+This should form the next step of my marketing journey.
+
+I am the Agentic AI Reliability Engineer.
+- Focssuing on the following
+
+- 1. Behavioral reliability
+
+Does the agent consistently behave according to its intended policy?
+
+2. Operational reliability
+
+Does it survive failures, retries, timeouts, API changes, unavailable tools, bad inputs and long runtimes?
+
+3. State reliability
+
+Does memory remain coherent? Does the agent accidentally corrupt or misunderstand its own accumulated state?
+
+4. Economic reliability
+
+Can it accomplish its goal without exploding inference/tool costs?
+
+5. Governance reliability
+
+Can you know what it did, why it did it, what tools it touched and what happened afterward?
