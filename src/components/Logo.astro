@@ -1,0 +1,9 @@
+---
+import { SITE } from 'astrowind:config';
+import Mark from '~/assets/images/haagsoft-mark-mono.svg';
+---
+
+<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 inline-flex items-center gap-2 text-heading whitespace-nowrap">
+  <Mark class="h-9 w-9 md:h-8 md:w-8" aria-hidden="true" />
+  <span class="font-heading text-2xl md:text-xl font-bold tracking-tight lowercase">{SITE?.name}</span>
+</span>

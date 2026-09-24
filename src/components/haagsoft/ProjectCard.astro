@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getPermalink } from '~/utils/permalinks';
+import type { Project } from '~/data/projects';
+
+export interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, status, description, tags, accent, url, postSlug } = project;
+
+const accentVar = accent === 'ghost' ? 'var(--aw-color-text-muted)' : `var(--hs-${accent})`;
+const host = url ? new URL(url).host : undefined;
+---
+
+<article
+  class:list={[
+    'hs-card group relative flex h-full flex-col rounded-2xl border p-6 md:p-7 transition',
+    accent === 'ghost' ? 'border-dashed border-rule bg-transparent' : 'border-rule bg-surface',
+    url && 'hover:-translate-y-0.5 hover:shadow-lg focus-within:-translate-y-0.5',
+  ]}
+  style={`--accent: ${accentVar}`}
+>
+  <header class="flex items-start justify-between gap-4">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+        <span class="mr-2 inline-block h-2 w-2 rounded-full align-middle" style="background: var(--accent)"></span>
+        {status}
+      </p>
+      <h3 class="mt-3 font-heading text-3xl font-bold tracking-tight text-heading">
+        {
+          url ? (
+            <a href={url} rel="noopener" class="after:absolute after:inset-0 after:rounded-2xl focus:outline-none">
+              {title}
+            </a>
+          ) : (
+            title
+          )
+        }
+      </h3>
+    </div>
+    {
+      url && (
+        <Icon
+          name="tabler:arrow-up-right"
+          class="h-6 w-6 shrink-0 text-muted transition group-hover:text-heading group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      )
+    }
+  </header>
+
+  <p class="mt-4 text-muted text-pretty">{description}</p>
+
+  <ul class="mt-5 flex flex-wrap gap-1.5 list-none p-0">
+    {tags.map((tag) => <li class="hs-tag rounded-full px-2.5 py-0.5 font-mono text-[0.72rem] text-default">{tag}</li>)}
+  </ul>
+
+  {
+    (url || postSlug) && (
+      <div class="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-6 text-sm font-medium">
+        {url && (
+          <span class="text-heading">
+            Open app ↗ <span class="font-mono text-xs text-muted">{host}</span>
+          </span>
+        )}
+        {postSlug && (
+          <a
+            href={getPermalink(postSlug, 'post')}
+            class="relative z-10 text-link underline decoration-rule underline-offset-4 hover:decoration-current"
+          >
+            How I built it →
+          </a>
+        )}
+      </div>
+    )
+  }
+</article>
+
+<style>
+  .hs-card {
+    background-image: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      color-mix(in srgb, var(--accent) 4%, transparent) 60%
+    );
+  }
+  .hs-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  .hs-tag {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+</style>

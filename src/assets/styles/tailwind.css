@@ -1,0 +1,269 @@
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/typography";
+
+/* shadcn/ui-compatible tokens derived from the --aw-* variables. */
+@import './shadcn.css';
+
+@variant dark (&:where(.dark, .dark *));
+
+@custom-variant intersect (&:not([no-intersect]));
+
+@theme {
+  --color-primary: var(--aw-color-primary);
+  --color-secondary: var(--aw-color-secondary);
+  --color-accent: var(--aw-color-accent);
+  --color-heading: var(--aw-color-text-heading);
+  --color-default: var(--aw-color-text-default);
+  --color-muted: var(--aw-color-text-muted);
+  --color-link: var(--aw-color-link, var(--aw-color-primary));
+
+  --font-sans:
+    var(--aw-font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: var(--aw-font-serif, ui-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-heading: var(--aw-font-heading, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--aw-font-mono, ui-monospace), ui-monospace, 'SF Mono', monospace;
+
+  /* Haagsoft surfaces (switch with the theme, see CustomStyles.astro) */
+  --color-surface: var(--hs-surface);
+  --color-band: var(--hs-band);
+  --color-rule: var(--hs-rule);
+  --color-fill: var(--hs-fill);
+  --color-on-fill: var(--hs-on-fill);
+  --color-ink: var(--hs-ink);
+  --color-paper: var(--hs-paper);
+  --color-lime: var(--hs-lime);
+  --color-violet: var(--hs-violet);
+  --color-amber: var(--hs-amber);
+  --color-blue: var(--hs-blue);
+
+  /* The template's dark-mode slates, lifted to the Haagsoft charcoal family
+     so blog and utility components don't fall back to near-black. */
+  --color-slate-700: #353b47;
+  --color-slate-800: #2a2f3a;
+  --color-slate-900: #1f232b;
+
+  --animate-fade: fadeInUp 0.5s both;
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@utility bg-page {
+  background-color: var(--aw-color-bg-page);
+}
+
+@utility bg-dark {
+  background-color: var(--aw-color-bg-page-dark);
+}
+
+@utility text-page {
+  color: var(--aw-color-text-default);
+}
+
+@utility text-muted {
+  color: var(--aw-color-text-muted);
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+}
+
+@utility btn-primary {
+  @apply btn font-semibold bg-fill text-on-fill border-fill hover:bg-[#b8eb1f] hover:border-[#b8eb1f] hover:text-on-fill dark:text-on-fill dark:bg-fill dark:border-fill dark:hover:border-[#b8eb1f] dark:hover:bg-[#b8eb1f];
+}
+
+@utility btn-secondary {
+  @apply btn;
+}
+
+@utility btn-tertiary {
+  @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+}
+
+/* Sticky header: solid page background on phones, translucent page background with blur on desktop. */
+#header.scroll > div:first-child {
+  @apply bg-page lg:backdrop-blur-md;
+  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
+}
+@media (width >= 64rem) {
+  #header.scroll > div:first-child {
+    background-color: color-mix(in srgb, var(--aw-color-bg-page) 90%, transparent);
+  }
+}
+.dark #header.scroll > div:first-child,
+#header.scroll.dark > div:first-child {
+  @apply border-b border-gray-500/20;
+  box-shadow: none;
+}
+
+#header.expanded nav {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 70px !important;
+  padding: 0 5px;
+}
+
+.dropdown:focus .dropdown-menu,
+.dropdown:focus-within .dropdown-menu,
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+[astro-icon].icon-light > * {
+  stroke-width: 1.2;
+}
+
+[astro-icon].icon-bold > * {
+  stroke-width: 2.4;
+}
+
+[data-aw-toggle-menu] path {
+  @apply transition;
+}
+[data-aw-toggle-menu].expanded g > path:first-child {
+  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
+}
+[data-aw-toggle-menu].expanded g > path:last-child {
+  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
+
+/* Current page in the header navigation (set server-side in Header.astro and
+   kept in sync on client-side navigations). Override --aw-color-link in
+   CustomStyles.astro to change the colour. */
+#header nav .aw-link-active {
+  @apply text-link;
+}
+
+.dd *:first-child {
+  margin-top: 0;
+}
+
+/* Blog prose: inline code without the typography plugin's backticks, and
+   code blocks that follow the light/dark theme (Shiki dual themes). */
+.prose :where(code):not(:where(pre *)) {
+  background-color: color-mix(in oklab, var(--aw-color-text-default) 8%, transparent);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.375rem;
+  font-weight: 500;
+}
+.prose :where(code):not(:where(pre *))::before,
+.prose :where(code):not(:where(pre *))::after {
+  content: none;
+}
+.prose :where(pre.astro-code) {
+  border: 1px solid color-mix(in oklab, var(--aw-color-text-default) 12%, transparent);
+}
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ---------- Haagsoft ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--hs-lime);
+  outline-offset: 3px;
+}
+html:not(.dark) :focus-visible {
+  outline-color: var(--aw-color-primary);
+}
+
+/* Soft accent glows that brighten hero and CTA sections. */
+.hs-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(40px);
+  opacity: var(--hs-glow);
+  pointer-events: none;
+}
+
+/* Marquee: pure CSS, paused for reduced motion. */
+@keyframes hs-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.hs-marquee__track {
+  animation: hs-marquee 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hs-marquee__track {
+    animation: none;
+  }
+}
+
+/* Hero line wipe: each line rises out of a mask on load. */
+@keyframes hs-line-in {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.hs-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.hs-line > span {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hs-line > span {
+    animation: hs-line-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hs-line:nth-child(2) > span {
+    animation-delay: 0.08s;
+  }
+  .hs-line:nth-child(3) > span {
+    animation-delay: 0.16s;
+  }
+  .hs-line:nth-child(4) > span {
+    animation-delay: 0.24s;
+  }
+}
+
+/* Big statement text lights up as it scrolls through the viewport
+   (scroll-driven animation; static and fully lit where unsupported). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hs-light-up {
+      animation: hs-light-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+    @keyframes hs-light-up {
+      from {
+        opacity: 0.25;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* Without JavaScript the reveal observer never runs: show everything. */
+@media (scripting: none) {
+  [class*='intersect'] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

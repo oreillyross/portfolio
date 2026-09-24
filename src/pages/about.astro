@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/PageLayout.astro';
+import Section from '~/components/haagsoft/Section.astro';
+import SectionLabel from '~/components/haagsoft/SectionLabel.astro';
+import Reveal from '~/components/haagsoft/Reveal.astro';
+import { getPermalink } from '~/utils/permalinks';
+import nature from '~/assets/images/nature.jpg';
+
+const metadata = {
+  title: 'About',
+  description:
+    "Ross O'Reilly is the one person behind Haagsoft: agentic AI SaaS in type-safe TypeScript, made reliable with evals and harness engineering.",
+};
+
+const EMAIL = 'devguy@duck.com';
+
+const specialism = [
+  {
+    title: 'Agentic reliability',
+    text: 'Agents that do the same sensible thing on the hundredth run as on the first. Typed tool contracts, bounded loops, retries and fallbacks that are designed, not bolted on.',
+  },
+  {
+    title: 'Evals',
+    text: 'Fixed datasets, graded runs and regression checks for model behaviour, so a prompt or model change is a measured decision instead of a hopeful one.',
+  },
+  {
+    title: 'Harness engineering',
+    text: 'The layer around the model — context assembly, tools, memory, tracing, cost control — that turns an impressive demo into a product people can depend on.',
+  },
+  {
+    title: 'Type-safe TypeScript, end to end',
+    text: 'tRPC, Drizzle and Zod from the database to the tool schema the model sees, with LangChain where it earns its place. One language, fewer seams for bugs to hide in.',
+  },
+];
+
+const engagement = [
+  {
+    step: 'Spec',
+    text: 'A short written spec: the problem, the smallest slice worth shipping, and how we will know it works (including the evals).',
+  },
+  {
+    step: 'Slice',
+    text: 'A live URL early — usually within the first week or two — on hot-swappable infrastructure you own.',
+  },
+  {
+    step: 'Measure',
+    text: 'Evals and real usage decide the next slice. Complexity only arrives when something real asks for it.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Intro -->
+  <section class="relative overflow-clip not-prose">
+    <div aria-hidden="true">
+      <div class="hs-glow -top-32 -right-24 h-[28rem] w-[28rem] bg-lime"></div>
+    </div>
+    <div
+      class="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 py-16 md:grid-cols-[1.2fr_1fr] md:items-center md:py-24"
+    >
+      <div>
+        <SectionLabel>About</SectionLabel>
+        <h1
+          class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.95] text-[clamp(2.75rem,7vw,5.5rem)]"
+        >
+          <span class="hs-line"><span>Hi, I'm Ross.</span></span>
+          <span class="hs-line"><span class="text-primary">Haagsoft is me.</span></span>
+        </h1>
+        <p class="mt-8 max-w-xl text-lg md:text-xl text-muted">
+          I'm a full-stack solopreneur building agentic AI software in TypeScript. My speciality is the unglamorous part
+          that decides whether AI features survive contact with users: reliability, evals and the harness around the
+          model.
+        </p>
+      </div>
+      <figure class="relative">
+        <Image
+          src={nature}
+          alt="Sunlight through a young forest"
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 767px) 100vw, 480px"
+          class="aspect-[4/5] w-full rounded-3xl object-cover shadow-xl"
+          loading="eager"
+        />
+        <figcaption class="mt-3 font-mono text-xs text-muted">
+          <em class="not-italic text-primary">haag</em> — Dutch for hedge. Small things, planted deliberately, that grow.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Why Haagsoft -->
+  <Section band container="max-w-4xl">
+    <Reveal><SectionLabel n="01">Why Haagsoft</SectionLabel></Reveal>
+    <div class="mt-8 space-y-6 text-lg text-default">
+      <Reveal as="p">
+        Haagsoft is a one-person studio on purpose. Instead of one big platform, it is a hedge of small, independently
+        deployable apps — each on its own <span class="font-mono text-primary">haagsoft.xyz</span> subdomain — that stand
+        alone or compound. Every one is sized to ship fast and prove its value before it earns more investment.
+      </Reveal>
+      <Reveal as="p">
+        The same approach applies to client work: write the spec, cut it to the smallest honest slice, get it live, then
+        let real usage and evals decide what comes next.
+      </Reveal>
+    </div>
+  </Section>
+
+  <!-- Specialism -->
+  <Section>
+    <Reveal><SectionLabel n="02">What I'm good at</SectionLabel></Reveal>
+    <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance">
+      Agentic software you can actually rely on.
+    </Reveal>
+    <ul class="mt-12 grid list-none gap-6 p-0 md:grid-cols-2">
+      {
+        specialism.map(({ title, text }) => (
+          <Reveal as="li" class="rounded-2xl border border-rule bg-surface p-6 md:p-8">
+            <h3 class="font-heading text-2xl font-bold tracking-tight text-heading">{title}</h3>
+            <p class="mt-3 text-muted">{text}</p>
+          </Reveal>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <!-- Engagement -->
+  <Section band>
+    <Reveal><SectionLabel n="03">Working together</SectionLabel></Reveal>
+    <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading">
+      Spec, slice, measure.
+    </Reveal>
+    <ol class="mt-12 grid list-none gap-6 p-0 md:grid-cols-3">
+      {
+        engagement.map(({ step, text }, i) => (
+          <Reveal as="li" class="border-t-2 border-primary pt-6">
+            <span class="font-mono text-sm text-primary">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 font-heading text-2xl font-bold text-heading">{step}</h3>
+            <p class="mt-3 text-muted">{text}</p>
+          </Reveal>
+        ))
+      }
+    </ol>
+    <p class="mt-12 text-muted">
+      The principles behind this, and the stack I use, are on the <a
+        class="text-link underline underline-offset-4"
+        href={getPermalink('/#studio')}>home page</a
+      >. How the apps were actually built is in the <a
+        class="text-link underline underline-offset-4"
+        href={getPermalink('/blog')}>blog</a
+      >.
+    </p>
+  </Section>
+
+  <!-- CTA -->
+  <Section>
+    <div aria-hidden="true" slot="bg">
+      <div class="hs-glow -bottom-32 right-10 h-96 w-96 bg-violet"></div>
+    </div>
+    <h2 class="font-heading text-4xl md:text-6xl font-bold tracking-tight text-heading text-balance">
+      Got an agent that needs to be <span class="text-primary">boringly reliable?</span>
+    </h2>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn-primary" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+      <a class="btn" href="https://github.com/oreillyross" rel="me noopener">github.com/oreillyross</a>
+    </div>
+  </Section>
+</Layout>

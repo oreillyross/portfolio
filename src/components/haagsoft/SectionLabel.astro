@@ -1,0 +1,14 @@
+---
+// Mono section label, e.g. "01 Manifesto".
+export interface Props {
+  n?: string;
+  class?: string;
+}
+const { n, class: className = '' } = Astro.props;
+---
+
+<p class:list={['flex items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-muted', className]}>
+  {n && <span class="text-primary">{n}</span>}
+  <span class="h-px w-8 bg-rule" aria-hidden="true"></span>
+  <slot />
+</p>
