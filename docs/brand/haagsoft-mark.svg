@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Haagsoft">
+  <title>Haagsoft</title>
+  <rect width="64" height="64" rx="14" fill="#16181d"/>
+  <rect x="15" y="14" width="9" height="36" rx="4.5" fill="#f7f5f0"/>
+  <rect x="40" y="22" width="9" height="28" rx="4.5" fill="#f7f5f0"/>
+  <path d="M44.5 23.5C43.6 15.2 47.6 9.6 55.4 8.2C56.4 16.1 52.4 21.6 44.5 23.5Z" fill="#ccff33"/>
+  <path d="M24 32H40" stroke="#ccff33" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="5.5" fill="#ccff33"/>
+  <circle cx="32" cy="32" r="2" fill="#16181d"/>
+</svg>
