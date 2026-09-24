@@ -93,8 +93,13 @@ Goal: only the pages and widgets we need, with Haagsoft branding and metadata.
   column linking to `pantler.haagsoft.xyz` and `horizon.haagsoft.xyz`, and RSS. Remove the AstroWind
   links and the attribution columns.
 - [ ] **1.4 Assets.** Move the reused `img/*.jpg` into `src/assets/images/`. Replace the
-  favicons and the `Logo.astro` wordmark with a Haagsoft mark. A quick version is the
-  current inline-SVG `f10` favicon reworked as `hs` or `H`, in lime on the page background. Drop the `.xcf`
+  favicons and the `Logo.astro` wordmark with the Haagsoft logo in `docs/brand/` (see its
+  README):
+  - `haagsoft-mark.svg` → `src/assets/favicons/favicon.svg`. Also export
+    `apple-touch-icon.png` (180px) and `favicon.ico` from it.
+  - `Logo.astro` → inline `haagsoft-mark-mono.svg` (its pillars follow `currentColor`, so
+    it works in both themes) plus the text "haagsoft" set in Space Grotesk.
+  - Default OG image (1200×628): the dark wordmark centred on `#16181d`. Drop the `.xcf`
   source files or keep them outside `src/`.
 - [ ] **1.5 Prune unused widgets.** Delete the widgets nothing imports once Phase 3 is done;
   leave them in place until then.
@@ -246,9 +251,6 @@ all content immediately.
   to the apex) as domains on the Vercel `portfolio` project. The production deploy from
   `main` must be green. Make sure this apex project doesn't clash with the `pantler.` and
   `horizon.` subdomains, which are served by their own projects.
-- [ ] **6.1b Old domain.** If `factor-10.dev` is still registered, add it to the same
-  project with a permanent redirect to `https://haagsoft.xyz` so old links keep working.
-  Otherwise let it lapse.
 - [ ] **6.2 CI.** A GitHub Action on PRs runs `npm ci && npm run check && npm run build`.
 - [ ] **6.3 Docs.** Rewrite `README.md` for the Astro workflow (dev, build, where copy lives,
   how to add a post or project, how to change theme tokens). Move `docs/CLAUDE.md` to a root
@@ -273,10 +275,7 @@ sections on screen.
 - **Light mode?** Yes, as a first-class theme alongside dark (decision 2, 2.1, 2.5).
 - **`/about` page?** Yes (1.1, 1.3, 3.13).
 - **Faktor 10 vs `factor-10.dev`?** The brand is now Haagsoft on `haagsoft.xyz`, with apps on
-  subdomains (decision 6, 1.6, 3.14, 6.1b).
+  subdomains (decision 6, 1.6, 3.14). `factor-10.dev` is no longer owned, so there is no
+  redirect: it's simply dropped.
 - **Host?** Vercel (decision 5, 0.6, 6.1).
-
-## Open questions
-
-- Is `factor-10.dev` still registered, and should it redirect (6.1b)?
-- Is there a Haagsoft logo, or should 1.4 ship the simple text mark?
+- **Logo?** Generated: see `docs/brand/` (1.4).
