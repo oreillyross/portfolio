@@ -1,6 +1,8 @@
 This should form the next step of my marketing journey.
 
 I am the Agentic AI Reliability Engineer. I test, instrument and harden autonomous AI systems before they are trusted with real work.
+
+Your job has become Design the conditions under which synthetic agents can operate reliably for long periods without continuous human supervision.
 - Focssuing on the following
 
 - 1. Behavioral reliability
