@@ -1,0 +1,79 @@
+---
+// Haagsoft theme tokens. Fonts come from Astro's Fonts API (see `fonts` in
+// astro.config.ts and <Font /> in Layout.astro): Space Grotesk for headings,
+// Inter for body copy, JetBrains Mono for labels, tags and section numbers.
+// Both modes are first-class; dark is lifted from near-black to charcoal.
+---
+
+<style is:inline>
+  :root {
+    --aw-font-sans: var(--font-inter);
+    --aw-font-serif: var(--font-inter);
+    --aw-font-heading: var(--font-space-grotesk);
+    --aw-font-mono: var(--font-jetbrains-mono);
+
+    /* Brand accents (full strength, used for fills and tints) */
+    --hs-lime: #ccff33;
+    --hs-violet: #b09bff;
+    --hs-amber: #ffa14a;
+    --hs-blue: #7cc9ff;
+    --hs-ink: #16181d;
+    --hs-paper: #f7f5f0;
+
+    /* Light mode */
+    --aw-color-primary: #4d6b00; /* lime darkened for text/links on paper */
+    --aw-color-secondary: #3b5200;
+    --aw-color-accent: #6a4fd8;
+    --aw-color-link: #4d6b00;
+
+    --aw-color-text-heading: #16181d;
+    --aw-color-text-default: rgb(22 24 29 / 88%);
+    --aw-color-text-muted: rgb(22 24 29 / 68%);
+    --aw-color-bg-page: #f7f5f0;
+    --aw-color-bg-page-dark: #16181d;
+
+    --hs-surface: #ffffff;
+    --hs-band: #eeebe3;
+    --hs-rule: rgb(22 24 29 / 14%);
+    --hs-fill: #ccff33; /* primary button / highlight fill */
+    --hs-on-fill: #16181d;
+    --hs-glow: 0.22;
+
+    --hs-violet-text: #5b3fd0;
+    --hs-amber-text: #a44f00;
+    --hs-blue-text: #00629e;
+
+    ::selection {
+      background-color: #ccff33;
+      color: #16181d;
+    }
+  }
+
+  .dark {
+    --aw-color-primary: #ccff33;
+    --aw-color-secondary: #b8eb1f;
+    --aw-color-accent: #b09bff;
+    --aw-color-link: #ccff33;
+
+    --aw-color-text-heading: #f7f5f0;
+    --aw-color-text-default: rgb(243 241 236 / 88%);
+    --aw-color-text-muted: rgb(243 241 236 / 72%);
+    --aw-color-bg-page: #16181d;
+
+    --hs-surface: #1f232b;
+    --hs-band: #232833;
+    --hs-rule: rgb(243 241 236 / 20%);
+    --hs-fill: #ccff33;
+    --hs-on-fill: #16181d;
+    --hs-glow: 0.28;
+
+    --hs-violet-text: #b09bff;
+    --hs-amber-text: #ffa14a;
+    --hs-blue-text: #7cc9ff;
+
+    ::selection {
+      background-color: #ccff33;
+      color: #16181d;
+    }
+  }
+</style>

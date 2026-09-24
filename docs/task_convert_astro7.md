@@ -7,6 +7,32 @@
 > too many dark colours are being used.
 > Here is the astro repo https://github.com/arthelokyo/astrowind. Build it around a Landing page.
 
+## Status (2026-09-24)
+
+Phases 0–6 are done in code, apart from the two steps that need the live domain: 6.1
+(attach `haagsoft.xyz` in Vercel) and 6.5 (post-launch checks). Where the build differed
+from the plan:
+
+- **Custom sections instead of AstroWind widgets (Phase 3).** AstroWind's widgets hard-code
+  its own gray/slate/blue colour classes. The landing and about pages are built from small
+  on-brand components in `src/components/haagsoft/` (`Section`, `SectionLabel`, `Reveal`,
+  `ProjectCard`) instead. The unused widgets were deleted (1.5). AstroWind still supplies the
+  layout, header, footer, theme toggle, blog, SEO, RSS and sitemap.
+- **Local fonts (2.3).** Fonts come from `@fontsource-variable/*` through the Fonts API
+  local provider, rather than the remote Fontsource API, so the build doesn't depend on a
+  third-party API.
+- **Copy pass done alongside the conversion (3.9).** It's small: the marquee, the fifth
+  principle, a Reliability stack row, and the hero, manifesto and about copy now lead with
+  evals and reliability.
+- **Work section is a grid, not a horizontal rail (5.3).** With 5 projects, a two-column
+  grid (Pantler full width) shows everything without horizontal scrolling. The sticky
+  principle stack and scroll-lit statements (5.4) are CSS-only.
+- **Budget (5.5).** About 7.5 KB of JS gzipped on `/`.
+- **Vercel (0.6).** Build settings are pinned in `vercel.json` (`framework: astro`,
+  `npm run build` → `dist`), so the project needs no dashboard changes.
+- **Contrast (2.6).** Checked by computing the token pairs: every text/background pair is
+  at least 5.1:1 in both modes. A Lighthouse run on the preview URL is part of 6.5.
+
 ## Goal
 
 Replace the hand-rolled static one-pager (`index.html` + `css/site.css` + `js/site.js`)
@@ -60,20 +86,20 @@ page and a real, routed blog alongside it. The site is rebranded from Faktor 10 
 
 Goal: a clean AstroWind build running from the repo root, with the old site parked.
 
-- [ ] **0.1 Park the current site.** `git mv index.html css js img legacy/scroll-site/`
-  (keep `img/` handy, the images get reused in 1.4).
-- [ ] **0.2 Import AstroWind.** Copy the template into the root (degit or a shallow clone
-  without `.git`): `src/`, `public/`, `astro.config.ts`, `package.json`, `tsconfig.json`,
-  `eslint.config.js`, prettier config, `vendor/`, `vercel.json`. Skip `Dockerfile`,
-  `docker-compose.yml`, `nginx/`, `netlify.toml`, `wrangler.jsonc` and `sandbox.config.json`.
-- [ ] **0.3 Pin the toolchain.** Add `.nvmrc` (Node 22 LTS ≥ 22.22.3) and `engines`. Decide
-  npm or pnpm and commit the lockfile.
-- [ ] **0.4 Merge `.gitignore`.** Add `node_modules/`, `dist/`, `.astro/`.
-- [ ] **0.5 Smoke test.** `npm i && npm run build && npm run check` pass on the untouched
-  template.
-- [ ] **0.6 Vercel project settings.** Framework preset Astro, build command `npm run build`,
-  output directory `dist`, and a Node version that matches `.nvmrc`. The PR preview deploy
-  must go green.
+- [x] **0.1 Park the current site.** `git mv index.html css js img legacy/scroll-site/`
+      (keep `img/` handy, the images get reused in 1.4).
+- [x] **0.2 Import AstroWind.** Copy the template into the root (degit or a shallow clone
+      without `.git`): `src/`, `public/`, `astro.config.ts`, `package.json`, `tsconfig.json`,
+      `eslint.config.js`, prettier config, `vendor/`, `vercel.json`. Skip `Dockerfile`,
+      `docker-compose.yml`, `nginx/`, `netlify.toml`, `wrangler.jsonc` and `sandbox.config.json`.
+- [x] **0.3 Pin the toolchain.** Add `.nvmrc` (Node 22 LTS ≥ 22.22.3) and `engines`. Decide
+      npm or pnpm and commit the lockfile.
+- [x] **0.4 Merge `.gitignore`.** Add `node_modules/`, `dist/`, `.astro/`.
+- [x] **0.5 Smoke test.** `npm i && npm run build && npm run check` pass on the untouched
+      template.
+- [x] **0.6 Vercel project settings.** Framework preset Astro, build command `npm run build`,
+      output directory `dist`, and a Node version that matches `.nvmrc`. The PR preview deploy
+      must go green.
 
 **Done when:** `npm run dev` serves the stock AstroWind site and `npm run check` is green.
 
@@ -81,36 +107,36 @@ Goal: a clean AstroWind build running from the repo root, with the old site park
 
 Goal: only the pages and widgets we need, with Haagsoft branding and metadata.
 
-- [ ] **1.1 Delete the demo pages.** `src/pages/homes/*`, `src/pages/landing/*`,
-  `pricing.astro`, `services.astro`, and the demo posts in `src/data/post/*`. Keep
-  `about.astro`, which gets rewritten in 3.13.
-- [ ] **1.2 `src/config.yaml`.** Site name `Haagsoft`, `site: https://haagsoft.xyz`, title
-  template `%s — Haagsoft`, the description from the current `<meta name="description">`
-  (reworded for Haagsoft), a real OG image, the Twitter handle (or remove it),
-  `ui.theme: 'system'` (see decision 2), and remove `googleSiteVerificationId`.
-- [ ] **1.3 `src/navigation.ts`.** Header links: Work, Stack, Studio, About, Blog, and a
-  "Let's talk" CTA. Footer: email `devguy@duck.com`, GitHub `oreillyross`, a "Projects"
-  column linking to `pantler.haagsoft.xyz` and `horizon.haagsoft.xyz`, and RSS. Remove the AstroWind
-  links and the attribution columns.
-- [ ] **1.4 Assets.** Move the reused `img/*.jpg` into `src/assets/images/`. Replace the
-  favicons and the `Logo.astro` wordmark with the Haagsoft logo in `docs/brand/` (see its
-  README):
+- [x] **1.1 Delete the demo pages.** `src/pages/homes/*`, `src/pages/landing/*`,
+      `pricing.astro`, `services.astro`, and the demo posts in `src/data/post/*`. Keep
+      `about.astro`, which gets rewritten in 3.13.
+- [x] **1.2 `src/config.yaml`.** Site name `Haagsoft`, `site: https://haagsoft.xyz`, title
+      template `%s — Haagsoft`, the description from the current `<meta name="description">`
+      (reworded for Haagsoft), a real OG image, the Twitter handle (or remove it),
+      `ui.theme: 'system'` (see decision 2), and remove `googleSiteVerificationId`.
+- [x] **1.3 `src/navigation.ts`.** Header links: Work, Stack, Studio, About, Blog, and a
+      "Let's talk" CTA. Footer: email `devguy@duck.com`, GitHub `oreillyross`, a "Projects"
+      column linking to `pantler.haagsoft.xyz` and `horizon.haagsoft.xyz`, and RSS. Remove the AstroWind
+      links and the attribution columns.
+- [x] **1.4 Assets.** Move the reused `img/*.jpg` into `src/assets/images/`. Replace the
+      favicons and the `Logo.astro` wordmark with the Haagsoft logo in `docs/brand/` (see its
+      README):
   - `haagsoft-mark.svg` → `src/assets/favicons/favicon.svg`. Also export
     `apple-touch-icon.png` (180px) and `favicon.ico` from it.
   - `Logo.astro` → inline `haagsoft-mark-mono.svg` (its pillars follow `currentColor`, so
     it works in both themes) plus the text "haagsoft" set in Space Grotesk.
   - Default OG image (1200×628): the dark wordmark centred on `#16181d`. Drop the `.xcf`
-  source files or keep them outside `src/`.
-- [ ] **1.5 Prune unused widgets.** Delete the widgets nothing imports once Phase 3 is done;
-  leave them in place until then.
-- [ ] **1.6 Rebrand to Haagsoft.** Rename every "Faktor 10", "Faktor10", "Factor 10",
-  "factor-10" and "F10" in the new `src/` content, `package.json` `name`, `README.md` and
-  `docs/CLAUDE.md` to Haagsoft. Replace every `factor-10.dev` URL (site config, canonical/OG
-  URLs, the contact link) with `https://haagsoft.xyz`. Leave `legacy/` untouched. Reword copy
-  that plays on the old name, for example "Faktor 10 is a microservices-first studio…" in the
-  manifesto. Check with:
-  `grep -rniE "faktor|factor[- ]?10|\bF10\b" --exclude-dir={node_modules,dist,.git,legacy} .`,
-  which should come back empty.
+    source files or keep them outside `src/`.
+- [x] **1.5 Prune unused widgets.** Delete the widgets nothing imports once Phase 3 is done;
+      leave them in place until then.
+- [x] **1.6 Rebrand to Haagsoft.** Rename every "Faktor 10", "Faktor10", "Factor 10",
+      "factor-10" and "F10" in the new `src/` content, `package.json` `name`, `README.md` and
+      `docs/CLAUDE.md` to Haagsoft. Replace every `factor-10.dev` URL (site config, canonical/OG
+      URLs, the contact link) with `https://haagsoft.xyz`. Leave `legacy/` untouched. Reword copy
+      that plays on the old name, for example "Faktor 10 is a microservices-first studio…" in the
+      manifesto. Check with:
+      `grep -rniE "faktor|factor[- ]?10|\bF10\b" --exclude-dir={node_modules,dist,.git,legacy} .`,
+      which should come back empty.
 
 **Done when:** there is no AstroWind or Faktor 10 branding in the built output
 (`grep -riE "astrowind|faktor|factor-10" dist/` is empty apart from licence credits) and
@@ -120,45 +146,46 @@ the build is green.
 
 Goal: same identity, visibly less dark.
 
-- [ ] **2.1 Colour tokens in `CustomStyles.astro`.** Map the current palette onto `--aw-color-*`
-  and lift it. Starting proposal, to be tuned by eye:
+- [x] **2.1 Colour tokens in `CustomStyles.astro`.** Map the current palette onto `--aw-color-*`
+      and lift it. Starting proposal, to be tuned by eye:
 
-  | Role | Current | New (dark mode) |
-  | --- | --- | --- |
-  | Page background | `#0b0b0c` | `#16181d` |
-  | Raised surface / cards | `#141416` | `#1f232b` |
-  | Alternate section band | none | `#232833` |
-  | Heading text | `#f3f1ec` | `#f7f5f0` |
-  | Body text | `#f3f1ec` @ 62% | `#f3f1ec` @ 78% |
-  | Rules / borders | `#f3f1ec` @ 14% | `#f3f1ec` @ 20% |
-  | Primary (CTA, focus) | `#ccff33` | `#ccff33` |
-  | Accents | violet `#b09bff`, amber `#ffa14a`, blue `#7cc9ff` | unchanged, and used more widely as section tints |
+  | Role                   | Current                                           | New (dark mode)                                  |
+  | ---------------------- | ------------------------------------------------- | ------------------------------------------------ |
+  | Page background        | `#0b0b0c`                                         | `#16181d`                                        |
+  | Raised surface / cards | `#141416`                                         | `#1f232b`                                        |
+  | Alternate section band | none                                              | `#232833`                                        |
+  | Heading text           | `#f3f1ec`                                         | `#f7f5f0`                                        |
+  | Body text              | `#f3f1ec` @ 62%                                   | `#f3f1ec` @ 78%                                  |
+  | Rules / borders        | `#f3f1ec` @ 14%                                   | `#f3f1ec` @ 20%                                  |
+  | Primary (CTA, focus)   | `#ccff33`                                         | `#ccff33`                                        |
+  | Accents                | violet `#b09bff`, amber `#ffa14a`, blue `#7cc9ff` | unchanged, and used more widely as section tints |
 
-  | Role | New (light mode) |
-  | --- | --- |
-  | Page background | `#f7f5f0` (paper) |
-  | Raised surface / cards | `#ffffff` |
-  | Alternate section band | `#eeebe3` |
-  | Heading text | `#16181d` |
-  | Body text | `#16181d` @ 78% |
-  | Rules / borders | `#16181d` @ 14% |
-  | Primary fill (buttons, highlights) | `#ccff33`, with ink text on it |
-  | Primary as text or links | darkened lime, around `#4d6b00` (AA on paper) |
-  | Accents | violet, amber and blue darkened for text use, full strength for tints |
-- [ ] **2.2 Brightening beyond hex values.** Add soft accent glows or gradients behind the hero
-  and CTA (the current `hero__glow`, made stronger). Use alternating section bands. Give
-  project cards tinted backgrounds (lime/violet/amber/blue at around 10–15%) instead of
-  flat black.
-- [ ] **2.3 Fonts.** Swap Inter-only for the three current families through the Astro Fonts
-  API: `--aw-font-heading` → Space Grotesk, `--aw-font-sans` → Inter, plus a mono token for
-  JetBrains Mono (used for labels, tags and section numbers).
-- [ ] **2.4 Details.** Carry over `::selection` (lime on ink), `:focus-visible` (lime outline),
-  and the mono `sectionLabel` style (`01 Manifesto`) as a small reusable component.
-- [ ] **2.5 Theme toggle.** Keep AstroWind's `ToggleTheme` in the header. There must be no
-  flash of the wrong theme on load (`ApplyColorMode` runs inline in `<head>`), the choice
-  persists across pages, and `theme-color` follows the active mode.
-- [ ] **2.6 Contrast check.** Every text/background pair meets WCAG AA in both modes; check
-  with axe or Lighthouse.
+  | Role                               | New (light mode)                                                      |
+  | ---------------------------------- | --------------------------------------------------------------------- |
+  | Page background                    | `#f7f5f0` (paper)                                                     |
+  | Raised surface / cards             | `#ffffff`                                                             |
+  | Alternate section band             | `#eeebe3`                                                             |
+  | Heading text                       | `#16181d`                                                             |
+  | Body text                          | `#16181d` @ 78%                                                       |
+  | Rules / borders                    | `#16181d` @ 14%                                                       |
+  | Primary fill (buttons, highlights) | `#ccff33`, with ink text on it                                        |
+  | Primary as text or links           | darkened lime, around `#4d6b00` (AA on paper)                         |
+  | Accents                            | violet, amber and blue darkened for text use, full strength for tints |
+
+- [x] **2.2 Brightening beyond hex values.** Add soft accent glows or gradients behind the hero
+      and CTA (the current `hero__glow`, made stronger). Use alternating section bands. Give
+      project cards tinted backgrounds (lime/violet/amber/blue at around 10–15%) instead of
+      flat black.
+- [x] **2.3 Fonts.** Swap Inter-only for the three current families through the Astro Fonts
+      API: `--aw-font-heading` → Space Grotesk, `--aw-font-sans` → Inter, plus a mono token for
+      JetBrains Mono (used for labels, tags and section numbers).
+- [x] **2.4 Details.** Carry over `::selection` (lime on ink), `:focus-visible` (lime outline),
+      and the mono `sectionLabel` style (`01 Manifesto`) as a small reusable component.
+- [x] **2.5 Theme toggle.** Keep AstroWind's `ToggleTheme` in the header. There must be no
+      flash of the wrong theme on load (`ApplyColorMode` runs inline in `<head>`), the choice
+      persists across pages, and `theme-color` follows the active mode.
+- [x] **2.6 Contrast check.** Every text/background pair meets WCAG AA in both modes; check
+      with axe or Lighthouse.
 
 **Done when:** in both modes, a side-by-side screenshot against `legacy/scroll-site/` is
 recognisably the same visual identity and clearly lighter, and the Lighthouse accessibility
@@ -169,34 +196,34 @@ score is at least 95.
 Goal: every section of the current one-pager, rebuilt from AstroWind widgets. Copy moves
 over verbatim unless 3.9 changes it.
 
-| # | Current section | AstroWind widget | Notes |
-| --- | --- | --- | --- |
-| 3.1 | Hero ("Agentic AI SaaS, shipped in slices.") | `Hero` or `HeroText` | Keep the "Available for one new build" tag and the location tag as the tagline. CTAs: "See the work" and "Let's talk". |
-| 3.2 | Marquee | small custom `Marquee.astro` | Pure CSS keyframes, `aria-hidden`, paused under reduced motion. |
-| 3.3 | 01 Manifesto | `Content` | Big statement plus two columns. |
-| 3.4 | 02 How I work (5 principles) | `Steps` or `Features2` | `id="studio"`. |
-| 3.5 | 03 Active builds (Pantler, Horizon, Beliefs, Tiny GPT, Verity) | `Projects` | `id="work"`. Status badge, description, tag list, accent per card, and an optional `url`. Move the data to `src/data/projects.ts` so cards aren't hard-coded in markup. Links: see 3.14. |
-| 3.6 | 04 Stack | `Features` (list) or `Integrations` | `id="stack"`. Six rows. |
-| 3.7 | 05 The coworker | `Quote` | |
-| 3.8 | Blog teaser (new) | `BlogLatestPosts` | Shows the latest 3 posts, placed after the coworker section. |
-| 3.10 | 06 Contact | `CallToAction` | `id="contact"`. "Let's build something small that compounds." plus email, GitHub and `haagsoft.xyz` links. |
+| #    | Current section                                                | AstroWind widget                    | Notes                                                                                                                                                                                    |
+| ---- | -------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.1  | Hero ("Agentic AI SaaS, shipped in slices.")                   | `Hero` or `HeroText`                | Keep the "Available for one new build" tag and the location tag as the tagline. CTAs: "See the work" and "Let's talk".                                                                   |
+| 3.2  | Marquee                                                        | small custom `Marquee.astro`        | Pure CSS keyframes, `aria-hidden`, paused under reduced motion.                                                                                                                          |
+| 3.3  | 01 Manifesto                                                   | `Content`                           | Big statement plus two columns.                                                                                                                                                          |
+| 3.4  | 02 How I work (5 principles)                                   | `Steps` or `Features2`              | `id="studio"`.                                                                                                                                                                           |
+| 3.5  | 03 Active builds (Pantler, Horizon, Beliefs, Tiny GPT, Verity) | `Projects`                          | `id="work"`. Status badge, description, tag list, accent per card, and an optional `url`. Move the data to `src/data/projects.ts` so cards aren't hard-coded in markup. Links: see 3.14. |
+| 3.6  | 04 Stack                                                       | `Features` (list) or `Integrations` | `id="stack"`. Six rows.                                                                                                                                                                  |
+| 3.7  | 05 The coworker                                                | `Quote`                             |                                                                                                                                                                                          |
+| 3.8  | Blog teaser (new)                                              | `BlogLatestPosts`                   | Shows the latest 3 posts, placed after the coworker section.                                                                                                                             |
+| 3.10 | 06 Contact                                                     | `CallToAction`                      | `id="contact"`. "Let's build something small that compounds." plus email, GitHub and `haagsoft.xyz` links.                                                                               |
 
-- [ ] **3.1–3.8, 3.10:** build each row of the table above.
-- [ ] **3.9 Copy pass (optional, flagged).** `docs/CLAUDE.md` puts the positioning on
-  **agentic reliability, evals and harness engineering** with type-safe TypeScript and
-  LangChain. The current copy barely mentions evals. Do the conversion first, then run a
-  separate copy pass so the diff stays reviewable.
-- [ ] **3.11 Anchors.** Header links scroll to `#work`, `#stack`, `#studio`, `#contact`, and
-  work from `/blog/*` pages too (`/#work`).
-- [ ] **3.12 SEO parity.** Title, description, OG and Twitter tags carry over from the
-  current `<head>` but under the Haagsoft name and `haagsoft.xyz` URLs.
-- [ ] **3.13 `/about` page.** Rewrite `src/pages/about.astro` as a personal page: who Ross
-  is, why Haagsoft exists, the specialism (agentic reliability, evals, harness engineering,
-  type-safe TypeScript, LangChain; see `docs/CLAUDE.md`), how an engagement works, a photo,
-  and a contact CTA. Reuse the principles and stack copy instead of duplicating it. Draft the
-  copy from `docs/CLAUDE.md` and the current site, then leave it for Ross to edit before
-  merge.
-- [ ] **3.14 Project links.** The project cards link to the live apps:
+- [x] **3.1–3.8, 3.10:** build each row of the table above.
+- [x] **3.9 Copy pass (optional, flagged).** `docs/CLAUDE.md` puts the positioning on
+      **agentic reliability, evals and harness engineering** with type-safe TypeScript and
+      LangChain. The current copy barely mentions evals. Do the conversion first, then run a
+      separate copy pass so the diff stays reviewable.
+- [x] **3.11 Anchors.** Header links scroll to `#work`, `#stack`, `#studio`, `#contact`, and
+      work from `/blog/*` pages too (`/#work`).
+- [x] **3.12 SEO parity.** Title, description, OG and Twitter tags carry over from the
+      current `<head>` but under the Haagsoft name and `haagsoft.xyz` URLs.
+- [x] **3.13 `/about` page.** Rewrite `src/pages/about.astro` as a personal page: who Ross
+      is, why Haagsoft exists, the specialism (agentic reliability, evals, harness engineering,
+      type-safe TypeScript, LangChain; see `docs/CLAUDE.md`), how an engagement works, a photo,
+      and a contact CTA. Reuse the principles and stack copy instead of duplicating it. Draft the
+      copy from `docs/CLAUDE.md` and the current site, then leave it for Ross to edit before
+      merge.
+- [x] **3.14 Project links.** The project cards link to the live apps:
   - Pantler → `https://pantler.haagsoft.xyz`
   - Horizon → `https://horizon.haagsoft.xyz`
 
@@ -212,17 +239,17 @@ with JS disabled, and it looks right at 375px and at 1440px in both themes.
 
 Goal: `/blog` lists posts, and each post has its own page and shows up in RSS.
 
-- [ ] **4.1 Migrate the post.** Move `blog/howibuiltpantler.md` to
-  `src/data/post/how-i-built-pantler.md` and add frontmatter (`title`, `publishDate`,
-  `excerpt`, `category: build-log`, `tags: [pantler, llm, caching]`, `image`).
-- [ ] **4.2 Tidy the prose.** Fix typos only (for example "becamse", "capitilise",
-  "languge", "localiation"). Keep the voice.
-- [ ] **4.3 Blog config.** Choose between `/blog/%slug%` and `/%slug%` permalinks and set
-  `postsPerPage`. Categories on, tags `noindex` (the AstroWind default).
-- [ ] **4.4 Link from the Pantler card.** The Pantler card gets a secondary "How I built it"
-  link to the post, next to its main link to `pantler.haagsoft.xyz` (3.14).
-- [ ] **4.5 RSS and sitemap.** Check that `/rss.xml` and `sitemap-index.xml` include the post
-  with the production domain.
+- [x] **4.1 Migrate the post.** Move `blog/howibuiltpantler.md` to
+      `src/data/post/how-i-built-pantler.md` and add frontmatter (`title`, `publishDate`,
+      `excerpt`, `category: build-log`, `tags: [pantler, llm, caching]`, `image`).
+- [x] **4.2 Tidy the prose.** Fix typos only (for example "becamse", "capitilise",
+      "languge", "localiation"). Keep the voice.
+- [x] **4.3 Blog config.** Choose between `/blog/%slug%` and `/%slug%` permalinks and set
+      `postsPerPage`. Categories on, tags `noindex` (the AstroWind default).
+- [x] **4.4 Link from the Pantler card.** The Pantler card gets a secondary "How I built it"
+      link to the post, next to its main link to `pantler.haagsoft.xyz` (3.14).
+- [x] **4.5 RSS and sitemap.** Check that `/rss.xml` and `sitemap-index.xml` include the post
+      with the production domain.
 
 **Done when:** `/blog`, the post page, the category page and `/rss.xml` all render, and the
 post appears in the landing page teaser.
@@ -231,16 +258,16 @@ post appears in the landing page teaser.
 
 Goal: bring back the character of the scroll site without shipping heavy JS.
 
-- [ ] **5.1 Reveal on scroll.** Use AstroWind's `Intersect` or a tiny IntersectionObserver
-  script to fade and rise elements marked `data-reveal`. Skip it entirely under
-  `prefers-reduced-motion`.
-- [ ] **5.2 Hero line wipe.** Use CSS-only masked line reveals on load.
-- [ ] **5.3 (Stretch) Horizontal project rail.** Use CSS scroll-snap first, and only reach
-  for GSAP ScrollTrigger (npm, not CDN) if snap isn't enough.
-- [ ] **5.4 (Stretch) Word-by-word bigtext lighting and a sticky principles stack.** Try CSS
-  `animation-timeline: view()` with a static fallback.
-- [ ] **5.5 Budget.** JS shipped to `/` stays under 15 KB gzipped (excluding a stretch GSAP
-  import).
+- [x] **5.1 Reveal on scroll.** Use AstroWind's `Intersect` or a tiny IntersectionObserver
+      script to fade and rise elements marked `data-reveal`. Skip it entirely under
+      `prefers-reduced-motion`.
+- [x] **5.2 Hero line wipe.** Use CSS-only masked line reveals on load.
+- [x] **5.3 (Stretch) Horizontal project rail.** Use CSS scroll-snap first, and only reach
+      for GSAP ScrollTrigger (npm, not CDN) if snap isn't enough.
+- [x] **5.4 (Stretch) Word-by-word bigtext lighting and a sticky principles stack.** Try CSS
+      `animation-timeline: view()` with a static fallback.
+- [x] **5.5 Budget.** JS shipped to `/` stays under 15 KB gzipped (excluding a stretch GSAP
+      import).
 
 **Done when:** Lighthouse performance is at least 95 on mobile and reduced-motion users see
 all content immediately.
@@ -248,18 +275,18 @@ all content immediately.
 ## Phase 6: Ship and clean up
 
 - [ ] **6.1 Production on Vercel.** Add `haagsoft.xyz` (and `www.haagsoft.xyz`, redirecting
-  to the apex) as domains on the Vercel `portfolio` project. The production deploy from
-  `main` must be green. Make sure this apex project doesn't clash with the `pantler.` and
-  `horizon.` subdomains, which are served by their own projects.
-- [ ] **6.2 CI.** A GitHub Action on PRs runs `npm ci && npm run check && npm run build`.
-- [ ] **6.3 Docs.** Rewrite `README.md` for the Astro workflow (dev, build, where copy lives,
-  how to add a post or project, how to change theme tokens). Move `docs/CLAUDE.md` to a root
-  `CLAUDE.md` and merge in the useful parts of AstroWind's `CLAUDE.md`/`AGENTS.md`.
-- [ ] **6.4 Remove the old sites.** Once production is verified, delete `legacy/` (both the
-  HTML5 UP and scroll-site versions), plus the top-level `blog/`, `css/`, `js/`, `img/` if
-  anything is left.
+      to the apex) as domains on the Vercel `portfolio` project. The production deploy from
+      `main` must be green. Make sure this apex project doesn't clash with the `pantler.` and
+      `horizon.` subdomains, which are served by their own projects.
+- [x] **6.2 CI.** A GitHub Action on PRs runs `npm ci && npm run check && npm run build`.
+- [x] **6.3 Docs.** Rewrite `README.md` for the Astro workflow (dev, build, where copy lives,
+      how to add a post or project, how to change theme tokens). Move `docs/CLAUDE.md` to a root
+      `CLAUDE.md` and merge in the useful parts of AstroWind's `CLAUDE.md`/`AGENTS.md`.
+- [x] **6.4 Remove the old sites.** Once production is verified, delete `legacy/` (both the
+      HTML5 UP and scroll-site versions), plus the top-level `blog/`, `css/`, `js/`, `img/` if
+      anything is left.
 - [ ] **6.5 Post-launch check.** Check 404, OG preview (share the URL once), RSS in a reader,
-  Lighthouse on production in both themes, and that the Pantler and Horizon links resolve.
+      Lighthouse on production in both themes, and that the Pantler and Horizon links resolve.
 
 ---
 

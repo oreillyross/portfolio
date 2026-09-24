@@ -1,0 +1,18 @@
+---
+// Page section with the Haagsoft rhythm: optional lighter "band" background
+// so consecutive sections alternate instead of sitting on one flat colour.
+export interface Props {
+  id?: string;
+  band?: boolean;
+  class?: string;
+  container?: string;
+}
+const { id, band = false, class: className = '', container = 'max-w-6xl' } = Astro.props;
+---
+
+<section id={id} class:list={['relative scroll-mt-[72px] not-prose overflow-clip', band && 'bg-band', className]}>
+  <slot name="bg" />
+  <div class:list={['relative mx-auto px-4 sm:px-6 py-16 md:py-24 text-default', container]}>
+    <slot />
+  </div>
+</section>
