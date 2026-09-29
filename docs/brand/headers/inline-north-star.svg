@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace"><rect width="400" height="300" rx="22" fill="#16181d"/><rect x="1.5" y="1.5" width="397" height="297" rx="21" fill="none" stroke="#3a4050" stroke-width="3"/>
+<path d="M200 34 L208 62 L236 70 L208 78 L200 106 L192 78 L164 70 L192 62 Z" fill="#ccff33"/>
+<g stroke="#ccff33" stroke-opacity=".5" stroke-width="3" stroke-dasharray="3 10" stroke-linecap="round" fill="none">
+<path d="M186 100 L86 190"/><path d="M200 108 L200 190"/><path d="M214 100 L314 190"/></g>
+<circle cx="86" cy="205" r="26" fill="#7cc9ff"/><path d="M74 205 l9 9 l17 -19" stroke="#16181d" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="200" cy="205" r="26" fill="#7cc9ff"/><path d="M188 205 l9 9 l17 -19" stroke="#16181d" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="314" cy="205" r="26" fill="#ffa14a"/><path d="M304 195 l20 20 M324 195 l-20 20" stroke="#16181d" stroke-width="6" stroke-linecap="round"/>
+<path d="M314 240 C 314 268, 250 268, 236 250" stroke="#b09bff" stroke-width="4" stroke-dasharray="3 9" fill="none" stroke-linecap="round"/>
+<text x="200" y="285" font-size="15" fill="#b09bff" text-anchor="middle">regression caught</text>
+</svg>

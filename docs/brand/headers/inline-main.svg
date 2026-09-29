@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace"><rect width="400" height="300" rx="22" fill="#16181d"/><rect x="1.5" y="1.5" width="397" height="297" rx="21" fill="none" stroke="#3a4050" stroke-width="3"/>
+<text x="30" y="70" font-size="24" font-weight="700" fill="#ccff33">main</text>
+<path d="M30 120 H370" stroke="#ccff33" stroke-width="6" stroke-linecap="round"/>
+<g fill="#16181d" stroke="#ccff33" stroke-width="6"><circle cx="70" cy="120" r="14"/><circle cx="150" cy="120" r="14"/><circle cx="230" cy="120" r="14"/></g>
+<path d="M150 120 C 150 190, 170 200, 210 200 H250 C 290 200, 310 190, 310 120" stroke="#b09bff" stroke-width="6" fill="none"/>
+<circle cx="230" cy="200" r="14" fill="#16181d" stroke="#b09bff" stroke-width="6"/>
+<circle cx="330" cy="120" r="26" fill="#ccff33"/><path d="M318 120 l9 9 l17 -19" stroke="#16181d" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="200" y="272" font-size="15" fill="#b09bff" text-anchor="middle">spec + tests + evals</text>
+</svg>
