@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1250" width="2000" height="1250" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <radialGradient id="glow" cx="70%" cy="45%" r="65%">
+      <stop offset="0" stop-color="#b09bff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#16181d" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#ffffff" opacity=".07"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1 1 L10 6 L1 11" fill="none" stroke="#ccff33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="2000" height="1250" fill="#16181d"/>
+  <rect width="2000" height="1250" fill="url(#dots)"/>
+  <rect width="2000" height="1250" fill="url(#glow)"/>
+
+  <!-- terminal window, left -->
+  <g>
+    <rect x="90" y="170" width="820" height="910" rx="28" fill="#20242c" stroke="#3a4050" stroke-width="3"/>
+    <rect x="90" y="170" width="820" height="72" rx="28" fill="#2a2e37"/>
+    <rect x="90" y="214" width="820" height="28" fill="#2a2e37"/>
+    <circle cx="140" cy="206" r="10" fill="#ffa14a"/>
+    <circle cx="176" cy="206" r="10" fill="#b09bff"/>
+    <circle cx="212" cy="206" r="10" fill="#7cc9ff"/>
+    <text x="150" y="330" font-size="38" fill="#ccff33">$ claude</text>
+    <rect x="150" y="372" width="420" height="14" rx="7" fill="#ffffff" opacity=".75"/>
+    <rect x="150" y="410" width="560" height="14" rx="7" fill="#ffffff" opacity=".28"/>
+    <rect x="150" y="448" width="480" height="14" rx="7" fill="#ffffff" opacity=".28"/>
+    <text x="150" y="540" font-size="30" fill="#7cc9ff">✓ typecheck</text>
+    <text x="150" y="590" font-size="30" fill="#7cc9ff">✓ 42 tests</text>
+    <text x="150" y="640" font-size="30" fill="#ffa14a">✗ eval: boundary</text>
+    <rect x="150" y="700" width="640" height="14" rx="7" fill="#ffffff" opacity=".28"/>
+    <rect x="150" y="738" width="380" height="14" rx="7" fill="#ffffff" opacity=".28"/>
+    <text x="150" y="830" font-size="30" fill="#b09bff">↻ fixing…</text>
+    <rect x="150" y="900" width="26" height="46" fill="#ccff33"/>
+    <!-- tmux status bar -->
+    <rect x="90" y="1020" width="820" height="60" rx="0" fill="#ccff33"/>
+    <rect x="90" y="1040" width="820" height="40" rx="28" fill="#ccff33"/>
+    <text x="130" y="1060" font-size="26" fill="#16181d" font-weight="700">0:pantler  1:horizon  2:evals*  3:logs</text>
+  </g>
+
+  <!-- loop, right -->
+  <g fill="none" stroke="#ccff33" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arr)">
+    <path d="M1250 250 C 1400 250, 1500 300, 1560 380"/>
+    <path d="M1600 510 C 1620 620, 1600 690, 1560 760"/>
+    <path d="M1470 860 C 1380 910, 1270 910, 1180 860"/>
+    <path d="M1090 760 C 1040 690, 1040 570, 1090 470"/>
+  </g>
+  <!-- return arrow (learn at the process level) -->
+  <path d="M1110 380 C 1140 300, 1170 270, 1200 260" fill="none" stroke="#b09bff" stroke-width="5" stroke-dasharray="4 16" stroke-linecap="round"/>
+
+  <!-- nodes -->
+  <g>
+    <circle cx="1180" cy="250" r="86" fill="#ccff33"/>
+    <text x="1180" y="262" font-size="30" font-weight="700" text-anchor="middle" fill="#16181d">define</text>
+
+    <circle cx="1600" cy="440" r="86" fill="#7cc9ff"/>
+    <text x="1600" y="452" font-size="30" font-weight="700" text-anchor="middle" fill="#16181d">agent</text>
+
+    <circle cx="1500" cy="850" r="86" fill="#ffa14a"/>
+    <text x="1500" y="862" font-size="30" font-weight="700" text-anchor="middle" fill="#16181d">evals</text>
+
+    <circle cx="1060" cy="850" r="86" fill="#b09bff"/>
+    <text x="1060" y="862" font-size="30" font-weight="700" text-anchor="middle" fill="#16181d">review</text>
+
+    <circle cx="1060" cy="410" r="60" fill="#2a2e37" stroke="#b09bff" stroke-width="5" stroke-dasharray="10 10"/>
+    <text x="1060" y="418" font-size="24" text-anchor="middle" fill="#b09bff">ADR</text>
+  </g>
+
+  <!-- human at the centre -->
+  <g>
+    <circle cx="1330" cy="640" r="112" fill="none" stroke="#ffffff" stroke-opacity=".25" stroke-width="3" stroke-dasharray="6 14"/>
+    <circle cx="1330" cy="610" r="34" fill="#ffffff"/>
+    <path d="M1262 720 C 1262 662, 1398 662, 1398 720 Z" fill="#ffffff"/>
+  </g>
+</svg>

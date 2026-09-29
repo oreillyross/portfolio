@@ -2,8 +2,8 @@
 publishDate: 2026-09-23T00:00:00Z
 title: How I built Pantler
 excerpt: Three iterations of an agentic pantry app — from brittle recipe matching to asking an LLM what to cook, then caching titles and lazy-loading recipes to keep model calls cheap.
-image: ~/assets/images/office.jpg
-imageAlt: A laptop on a clean white desk
+image: ~/assets/images/post-pantler.png
+imageAlt: A pantry shelf of jars and boxes with a vision scan frame on one item, feeding a cached list of recipe titles and a dashed recipe card that loads only on request
 category: Build log
 tags:
   - pantler
