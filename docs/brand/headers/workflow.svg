@@ -37,7 +37,7 @@
     <!-- tmux status bar -->
     <rect x="90" y="1020" width="820" height="60" rx="0" fill="#ccff33"/>
     <rect x="90" y="1040" width="820" height="40" rx="28" fill="#ccff33"/>
-    <text x="130" y="1060" font-size="26" fill="#16181d" font-weight="700">0:pantler  1:horizon  2:evals*  3:logs</text>
+    <text x="130" y="1060" font-size="26" fill="#16181d" font-weight="700">ssh hetzner  ·  claude  ·  main ✓</text>
   </g>
 
   <!-- loop, right -->

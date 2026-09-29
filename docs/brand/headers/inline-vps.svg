@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace"><rect width="400" height="300" rx="22" fill="#16181d"/><rect x="1.5" y="1.5" width="397" height="297" rx="21" fill="none" stroke="#3a4050" stroke-width="3"/>
+<rect x="26" y="96" width="120" height="76" rx="10" fill="#2a2e37" stroke="#b09bff" stroke-width="4"/>
+<rect x="8" y="176" width="156" height="14" rx="7" fill="#b09bff"/>
+<text x="86" y="140" font-size="18" fill="#ccff33" text-anchor="middle">$ ssh</text>
+<path d="M170 134 H236" stroke="#ccff33" stroke-width="5" stroke-dasharray="3 12" stroke-linecap="round"/>
+<path d="M226 122 L240 134 L226 146" stroke="#ccff33" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g><rect x="256" y="48" width="126" height="208" rx="14" fill="#20242c" stroke="#3a4050" stroke-width="3"/>
+<rect x="270" y="64" width="98" height="46" rx="8" fill="#2a2e37"/><circle cx="286" cy="87" r="6" fill="#ccff33"/><rect x="304" y="82" width="52" height="10" rx="5" fill="#ffffff" opacity=".4"/>
+<rect x="270" y="120" width="98" height="46" rx="8" fill="#2a2e37"/><circle cx="286" cy="143" r="6" fill="#ccff33"/><rect x="304" y="138" width="40" height="10" rx="5" fill="#ffffff" opacity=".4"/>
+<rect x="270" y="176" width="98" height="46" rx="8" fill="#2a2e37"/><circle cx="286" cy="199" r="6" fill="#ffa14a"/><rect x="304" y="194" width="30" height="10" rx="5" fill="#ffffff" opacity=".4"/></g>
+<text x="86" y="230" font-size="14" fill="#b09bff" text-anchor="middle">omarchy</text>
+<text x="319" y="284" font-size="14" fill="#7cc9ff" text-anchor="middle">VPS</text>
+</svg>

@@ -11,31 +11,38 @@ tags:
   - evals
   - workflow
   - solopreneur
-author: Ross O'Reilly[replace with Dev guy]
+author: Dev guy
 ---
 
-My laptop used to be my development environment. 
+My laptop used to be my development environment.
 
 Increasingly, I don't think it should be.
 
 These days I can start Claude Code on a project, give it a task, and have it work for twenty minutes or longer while I make coffee, walk the dog, work on something else, or just step away.
 
-[rephrase this to reflect more the automation aspect of Agentic AI]So the interesting question is no longer how quickly I can type code. It's how I build an environment where an AI agent can work well without me sitting over its shoulder.
+So the interesting question is no longer how quickly I can type code. It's how much of the build, test, fix and ship cycle I can automate, and how I make that automation trustworthy enough to leave running while I'm not watching.
 
-I'm still figuring a lot of it out, and some of what follows is practice while some of it is where I'm heading. I'll try to be clear about which is which.
+I'm still figuring a lot of it out, and some of what follows is settled practice while some of it is where I'm heading. I'll try to be clear about which is which.
 
 ## The shift
 
-The short version is this: [reflect this in the past, I have moved from...]I'm moving from being the person who writes every line of code to being the person who designs, directs, tests, constrains and improves a small software system. That system is made up of me, AI coding agents, tools, memory, automation and infrastructure.
+The short version: I have moved from being the person who writes every line of code to being the person who designs, directs, tests, constrains and improves a small software system. That system is made up of me, AI coding agents, tools, memory, automation and infrastructure.
 
-[the next sentence sounds boring. It should reflect technical domain more. talk more about regression, and knowing the Agentic infrastructure stays follow north star]
-> How do I build a development environment in which AI can do substantial amounts of work while staying aligned with what I actually want?
+<img src="/images/blog/north-star.png" alt="A north star above three agent runs: two passing checks and one failing run that gets caught and corrected" width="240" height="180" style="float:right;width:min(240px,45%);height:auto;margin:0.25rem 0 1rem 1.5rem;border-radius:12px" />
+
+The question I care about isn't "how can AI write code faster?" It's a technical one, and it's about drift:
+
+> How do I make sure every change an agent ships is checked against a regression suite and a set of evals, so the whole agentic system keeps steering at the same north star instead of wandering a little further off course with every run?
 
 That difference shapes everything from this point on.
 
-## The [LLM ] model is only one component
+## The LLM is only one component
 
-An LLM is a very capable reasoning engine. It can read code, infer intent, generate implementations, inspect failures, propose changes, call tools and iterate. [think about the classic programming garbage in garbage out being relevant here, or make a leap to the metaphor]
+An LLM is a very capable reasoning engine. It can read code, infer intent, generate implementations, inspect failures, propose changes, call tools and iterate.
+
+<img src="/images/blog/garbage.png" alt="Garbage in and garbage out through an LLM, compared with clean input producing usable output" width="200" height="150" style="float:left;width:min(200px,40%);height:auto;margin:0.25rem 1.5rem 1rem 0;border-radius:12px" />
+
+But the oldest rule in programming still applies: garbage in, garbage out. An LLM doesn't repeal it, it amplifies it. A vague task, stale context or a missing constraint comes back as confident, well-formatted, plausible garbage, and because it reads so well it's harder to spot than a stack trace ever was. So I treat the model like a very fast, very literal function. What comes out is bounded by what goes in, and most of the rest of the system exists to control the input and check the output.
 
 What it isn't is an autonomous software engineer that can be trusted indefinitely.
 
@@ -80,24 +87,27 @@ Every new agent session starts with no memory of the last one. If I don't write 
 
 The goal isn't to micromanage the agent. It's to make the environment good enough that the agent doesn't keep needing me to rescue it.
 
-## My reliability loop [factor in less everyday vs longer term, stick to best practices with evals and knowing you will pick up regressions ]
+## My reliability loop: two clocks
 
-For everyday work, the loop I'm aiming for looks roughly like this:
+There are really two loops running at different speeds.
 
-```text
-Define → Plan → Agent implements → Run tests → Inspect result
-   → Agent evaluates failure → Fix → Re-test → Review diff
-   → Commit → Update project state
-```
-
-For bigger pieces of work it stretches out:
+The fast one lives inside a single task, and it's measured in minutes:
 
 ```text
-specification → implementation → automated tests → eval cases
-   → human review → production observation → back into the specification
+Spec → Agent writes the tests first → Agent implements → Run tests
+   → Agent reads the failure → Fix → Re-test → Review the diff → Commit
 ```
-[i dont like the next para, reword it to be more i dont know just somehting differnet]
-The last arrow is the important one. I want the system to learn from failures at the process level, not just patch the individual bug. If an agent keeps making the same mistake, the fix usually belongs in the instructions, the constraints or the tests, not in yet another prompt.
+
+The slow one lives across the whole project, and it's measured in weeks:
+
+```text
+specification → tests → implementation → regression suite + evals
+   → ship → production observation → back into the specification
+```
+
+The best practice I'm holding myself to on the slow loop is simple: expect regressions, don't hope to avoid them. Every change runs against the full regression suite and the eval cases, not just the tests for the code it touched. Every bug that escapes becomes a permanent test or eval, so that class of failure can't come back quietly.
+
+That's what makes the loop compound. If an agent keeps making the same mistake, the fix belongs in the instructions, the constraints or the suite, not in yet another prompt. Regressions are a certainty. The only real question is whether my suite finds them before a user does.
 
 ## Tests aren't enough, so evals
 
@@ -112,46 +122,50 @@ An agent can write code that passes a narrow unit test while completely misunder
 
 What I want to test is the behaviour of the agent, its tools, its instructions and the application together, not just individual functions. This is the part of the work I find most interesting, and it's where I'm spending more of my time.
 
-## Jev: from reasoning to structured decisions [whoa hold on tiger this is not mine, this is an established System On model from Typesafe, I use it as part of my stack with Agentic AI]
+## Jev: typed judgments for deterministic code
 
-One idea I've been developing is something I call **Jev**. It isn't a finished product. It's a pattern I keep coming back to.
+Jev isn't something I invented. It comes from TypeSafe's System One models ([their introduction is worth reading](https://typesafe.ai/blog/introducing-system-one-models-and-jev)), and I use it as part of my stack alongside agentic AI.
 
-The idea is to use the LLM as a reasoning layer that turns messy, natural-language situations into structured output that ordinary deterministic software can act on:
+The way it works is what I like. You hand it a state, either plain text or a JSON object of app state, and ask typed questions about it. A question is a yes/no, a pick-one from a fixed set of options, or a score on an ordered rubric. What comes back is calibrated probabilities. It's built for fast judgments where the possible answers are known in advance, and explicitly not for explanations.
+
+That shape fits the rest of my thinking, because it turns messy natural-language situations into something ordinary software can branch on:
 
 ```text
-real-world input → LLM → interpretation → structured output
-   → rules / application logic → action → feedback
+real-world input → typed question (yes/no, choice, score)
+   → calibrated probabilities → thresholds / rules → action → feedback
 ```
 
-The interesting part is the boundary between probabilistic reasoning and deterministic software. Instead of pretending the LLM should control everything, I let it produce classifications, decisions, probabilities, structured state, proposed actions and tool calls. Then conventional code enforces the rules.
+The interesting part is the boundary between probabilistic judgment and deterministic software. Instead of pretending an LLM should control everything, I let it produce numbers with known shapes, and conventional code decides what those numbers are allowed to do.
 
 That boundary is a large part of what I mean by reliable agentic systems.
 
-## Where I sit versus where the work happens
-
-The other big idea is separating where I'm sitting from where the work is happening.
-
-A long-running agent shouldn't die because I close a laptop lid. Where I want to get to is a remote machine that holds the repositories, databases, services, tmux sessions and Claude Code itself. My desktop, laptop or phone connect to it over a secure link.
-
-In that setup the client is just a window into the development environment. I can start an agent, disconnect, do something else, reconnect, check progress and carry on. The work persists independently of whatever device I happen to be holding.
-
-My laptop is increasingly becoming a window into the system rather than the system itself. [remove the tmux stuff I dont think I will use this anymore, I am more into using OMarchy to ssh into a Hetzner VPS and use long running agents using claude code and narrowing the time to production, because the code generally just works, and it is builton clear specs with built in ttd by the agent itself the risk of production being broken is low, so push  to main can be a thing ]
-
-### tmux as the floor
-
-I like tmux for its simplicity. One session per project, one for agent testing, one for the database, one for logs. If some nicer GUI layer falls over, the work is still there: SSH in, attach, continue.
-
-That's a reliability principle I try to apply everywhere: the simplest recovery path should stay available underneath the abstractions.
-
 ## Omarchy as the cockpit
 
-On the local side I'm moving to **Omarchy**. Not because it's magically better than every other operating system, but because I want my machine to be a focused engineering cockpit: terminal, tmux, editor, browser, git, Claude Code, project docs, logs and remote machines, all a keystroke away.
+On the local side I'm moving to **Omarchy**. Not because it's magically better than every other operating system, but because I want my machine to be a focused engineering cockpit: terminal, editor, browser, git, Claude Code, project docs, logs and a shell into wherever the work actually runs, all a keystroke away.
 
 It's keyboard-driven and terminal-centric, which suits working with agents and dev tools. I want the computer to disappear. The interface should support the workflow, not become it.
 
+## The work lives on a VPS
+
+The other big idea is separating where I'm sitting from where the work is happening.
+
+<img src="/images/blog/vps.png" alt="A laptop running Omarchy connecting over ssh to a remote VPS" width="340" height="255" style="float:right;width:min(340px,55%);height:auto;margin:0.25rem 0 1rem 1.5rem;border-radius:12px" />
+
+A long-running agent shouldn't die because I close a laptop lid. So I use Omarchy to ssh into a Hetzner VPS, and that's where Claude Code runs, with the repositories and the long-running agents. I can start an agent on a well-specified task, disconnect, do something else, reconnect, check progress and carry on. The work persists independently of whatever device I happen to be holding.
+
+My laptop is increasingly becoming a window into the system rather than the system itself.
+
+### Narrowing the road to production
+
+Working like this keeps shrinking the distance between "done" and "live". The code generally just works, because it's built on clear specs and the agent writes the tests as part of the job. With the spec, tests and evals all in place, the risk of breaking production is low, which means pushing straight to main can be a real option instead of a reckless one.
+
+<img src="/images/blog/main.png" alt="A short-lived branch merging into main, gated by spec, tests and evals" width="180" height="135" style="float:left;width:min(180px,35%);height:auto;margin:0.25rem 1.5rem 1rem 0;border-radius:12px" />
+
+That only holds while those pieces are doing their job. The day I skip the spec, or let the suite go stale, is the day pushing to main stops being safe. The speed comes from the safety net, so the net is the thing I have to maintain.
+
 ## Security is part of the workflow
 
-Agents raise the stakes on security. An agent might have access to source code, environment variables, terminals, package managers, git, deployment tools, APIs, MCP servers and databases.
+Agents raise the stakes on security. An agent might have access to source code, environment variables, terminals, package managers, git, deployment tools, APIs, MCP servers and databases. A VPS full of long-running agents makes that question more pressing, not less.
 
 So the question isn't "can the agent do this?" It's "what should this agent be allowed to do?"
 
@@ -172,6 +186,7 @@ This is far from solved, and I'd distrust anyone who tells you otherwise.
 
 - Agents drift. Without written constraints they'll happily undo last week's decision with total confidence.
 - Passing tests aren't the same as correct behaviour. If the tests don't represent reality, a green run just gives you false confidence.
+- Pushing to main is only as safe as the spec, tests and evals behind it. Thin specs mean thin safety.
 - More autonomy means a bigger blast radius, which is why security and least privilege are part of the workflow and not an afterthought.
 - Long-running agents are easy to over-engineer. I'm still working out where that abstraction starts earning its keep and where it just adds complexity.
 - The whole thing only works if I do the unglamorous parts: keeping task files current, writing the ADR, reviewing the diff.
@@ -204,9 +219,8 @@ The system should reduce cognitive overhead, not add to it.
 
 A traditional small software company might have a founder, a designer, frontend and backend developers, QA, DevOps, a researcher and a project manager. What interests me is what happens when one capable person can orchestrate AI systems that cover part of each of those roles. Not perfectly, and not autonomously, but well enough to change the economics of building software.
 
-
 I've started calling the space I want to work in **agentic AI reliability engineering**. It isn't an established job title or an industry standard, just a name for the boundary I keep ending up at. On one side are LLM behaviour, structured outputs, tool use, memory and evaluation. On the other are architecture, testing, security, infrastructure, observability and failure modes. The question sitting between them is the one I want to spend my time on:
 
 > How do you turn probabilistic intelligence into dependable software?
 
-That's the workshop. I'm building the engineering system that lets one person build software with machines that can reason, act, test, remember and keep working, while keeping the human firmly responsible for what gets built. [add scattered pictures about the size of 200x150px and some bigger some smaller through out, maybe three or four to make blog pop a bit]
+That's the workshop. I'm building the engineering system that lets one person build software with machines that can reason, act, test, remember and keep working, while keeping the human firmly responsible for what gets built.
