@@ -11,32 +11,31 @@ tags:
   - evals
   - workflow
   - solopreneur
-author: Ross O'Reilly
+author: Ross O'Reilly[replace with Dev guy]
 ---
 
-My laptop used to be my development environment.
+My laptop used to be my development environment. 
 
 Increasingly, I don't think it should be.
 
-These days I can start Claude Code on a project, give it a task, and have it work for twenty minutes or much longer while I make coffee, walk the dog, work on something else, or just step away.
+These days I can start Claude Code on a project, give it a task, and have it work for twenty minutes or longer while I make coffee, walk the dog, work on something else, or just step away.
 
-So the interesting question is no longer how quickly I can type code. It's how I build an environment where an AI agent can work well without me sitting over its shoulder.
+[rephrase this to reflect more the automation aspect of Agentic AI]So the interesting question is no longer how quickly I can type code. It's how I build an environment where an AI agent can work well without me sitting over its shoulder.
 
-This is how I currently work. I'm still figuring a lot of it out, and some of what follows is practice while some of it is where I'm heading. I'll try to be clear about which is which.
+I'm still figuring a lot of it out, and some of what follows is practice while some of it is where I'm heading. I'll try to be clear about which is which.
 
 ## The shift
 
-The short version is this: I'm moving from being the person who writes every line of code to being the person who designs, directs, tests, constrains and improves a small software system. That system is made up of me, AI coding agents, tools, memory, automation and infrastructure.
+The short version is this: [reflect this in the past, I have moved from...]I'm moving from being the person who writes every line of code to being the person who designs, directs, tests, constrains and improves a small software system. That system is made up of me, AI coding agents, tools, memory, automation and infrastructure.
 
-I'm not mainly asking "how can AI write code faster?" I'm asking something closer to this:
-
+[the next sentence sounds boring. It should reflect technical domain more. talk more about regression, and knowing the Agentic infrastructure stays follow north star]
 > How do I build a development environment in which AI can do substantial amounts of work while staying aligned with what I actually want?
 
-That difference shapes everything else in this post.
+That difference shapes everything from this point on.
 
-## The model is only one component
+## The [LLM ] model is only one component
 
-I think of an LLM as a very capable reasoning engine. It can read code, infer intent, generate implementations, inspect failures, propose changes, call tools and iterate.
+An LLM is a very capable reasoning engine. It can read code, infer intent, generate implementations, inspect failures, propose changes, call tools and iterate. [think about the classic programming garbage in garbage out being relevant here, or make a leap to the metaphor]
 
 What it isn't is an autonomous software engineer that can be trusted indefinitely.
 
@@ -81,7 +80,7 @@ Every new agent session starts with no memory of the last one. If I don't write 
 
 The goal isn't to micromanage the agent. It's to make the environment good enough that the agent doesn't keep needing me to rescue it.
 
-## My reliability loop
+## My reliability loop [factor in less everyday vs longer term, stick to best practices with evals and knowing you will pick up regressions ]
 
 For everyday work, the loop I'm aiming for looks roughly like this:
 
@@ -97,7 +96,7 @@ For bigger pieces of work it stretches out:
 specification → implementation → automated tests → eval cases
    → human review → production observation → back into the specification
 ```
-
+[i dont like the next para, reword it to be more i dont know just somehting differnet]
 The last arrow is the important one. I want the system to learn from failures at the process level, not just patch the individual bug. If an agent keeps making the same mistake, the fix usually belongs in the instructions, the constraints or the tests, not in yet another prompt.
 
 ## Tests aren't enough, so evals
@@ -113,7 +112,7 @@ An agent can write code that passes a narrow unit test while completely misunder
 
 What I want to test is the behaviour of the agent, its tools, its instructions and the application together, not just individual functions. This is the part of the work I find most interesting, and it's where I'm spending more of my time.
 
-## Jev: from reasoning to structured decisions
+## Jev: from reasoning to structured decisions [whoa hold on tiger this is not mine, this is an established System On model from Typesafe, I use it as part of my stack with Agentic AI]
 
 One idea I've been developing is something I call **Jev**. It isn't a finished product. It's a pattern I keep coming back to.
 
@@ -136,7 +135,7 @@ A long-running agent shouldn't die because I close a laptop lid. Where I want to
 
 In that setup the client is just a window into the development environment. I can start an agent, disconnect, do something else, reconnect, check progress and carry on. The work persists independently of whatever device I happen to be holding.
 
-My laptop is increasingly becoming a window into the system rather than the system itself.
+My laptop is increasingly becoming a window into the system rather than the system itself. [remove the tmux stuff I dont think I will use this anymore, I am more into using OMarchy to ssh into a Hetzner VPS and use long running agents using claude code and narrowing the time to production, because the code generally just works, and it is builton clear specs with built in ttd by the agent itself the risk of production being broken is low, so push  to main can be a thing ]
 
 ### tmux as the floor
 
@@ -205,15 +204,9 @@ The system should reduce cognitive overhead, not add to it.
 
 A traditional small software company might have a founder, a designer, frontend and backend developers, QA, DevOps, a researcher and a project manager. What interests me is what happens when one capable person can orchestrate AI systems that cover part of each of those roles. Not perfectly, and not autonomously, but well enough to change the economics of building software.
 
-My job then looks more like this:
-
-```text
-vision → product decisions → architecture → specification
-   → agent orchestration → evaluation → quality control → shipping
-```
 
 I've started calling the space I want to work in **agentic AI reliability engineering**. It isn't an established job title or an industry standard, just a name for the boundary I keep ending up at. On one side are LLM behaviour, structured outputs, tool use, memory and evaluation. On the other are architecture, testing, security, infrastructure, observability and failure modes. The question sitting between them is the one I want to spend my time on:
 
 > How do you turn probabilistic intelligence into dependable software?
 
-That's the workshop. I'm building the engineering system that lets one person build software with machines that can reason, act, test, remember and keep working, while keeping the human firmly responsible for what gets built.
+That's the workshop. I'm building the engineering system that lets one person build software with machines that can reason, act, test, remember and keep working, while keeping the human firmly responsible for what gets built. [add scattered pictures about the size of 200x150px and some bigger some smaller through out, maybe three or four to make blog pop a bit]
