@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1250" width="2000" height="1250" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace">
+  <defs>
+    <radialGradient id="glow" cx="30%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#ccff33" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#16181d" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#ffffff" opacity=".07"/>
+    </pattern>
+  </defs>
+  <rect width="2000" height="1250" fill="#16181d"/>
+  <rect width="2000" height="1250" fill="url(#dots)"/>
+  <rect width="2000" height="1250" fill="url(#glow)"/>
+
+  <!-- shelf -->
+  <g>
+    <rect x="90" y="780" width="1000" height="26" rx="6" fill="#2a2e37"/>
+    <rect x="90" y="1010" width="1000" height="26" rx="6" fill="#2a2e37"/>
+    <!-- top shelf items -->
+    <!-- jar (amber) -->
+    <rect x="150" y="610" width="150" height="170" rx="18" fill="#ffa14a"/>
+    <rect x="164" y="580" width="122" height="34" rx="8" fill="#ffd2a3"/>
+    <rect x="180" y="650" width="90" height="70" rx="8" fill="#16181d" opacity=".22"/>
+    <!-- tall bottle (violet) -->
+    <rect x="345" y="520" width="92" height="260" rx="16" fill="#b09bff"/>
+    <rect x="368" y="482" width="46" height="46" rx="8" fill="#d8ceff"/>
+    <rect x="357" y="640" width="68" height="70" rx="6" fill="#16181d" opacity=".22"/>
+    <!-- can (blue) -->
+    <rect x="490" y="600" width="140" height="180" rx="10" fill="#7cc9ff"/>
+    <rect x="490" y="600" width="140" height="22" rx="10" fill="#c3e8ff"/>
+    <rect x="506" y="662" width="108" height="58" rx="6" fill="#16181d" opacity=".22"/>
+    <!-- box (lime) -->
+    <rect x="690" y="560" width="170" height="220" rx="10" fill="#ccff33"/>
+    <rect x="708" y="610" width="134" height="14" rx="4" fill="#16181d" opacity=".25"/>
+    <rect x="708" y="642" width="94" height="14" rx="4" fill="#16181d" opacity=".25"/>
+    <rect x="708" y="700" width="70" height="46" rx="6" fill="#16181d" opacity=".25"/>
+    <!-- jar (violet small) -->
+    <rect x="915" y="660" width="120" height="120" rx="16" fill="#b09bff"/>
+    <rect x="927" y="634" width="96" height="30" rx="8" fill="#d8ceff"/>
+    <!-- bottom shelf items -->
+    <rect x="140" y="850" width="200" height="160" rx="12" fill="#7cc9ff"/>
+    <rect x="160" y="890" width="160" height="14" rx="4" fill="#16181d" opacity=".22"/>
+    <rect x="160" y="920" width="110" height="14" rx="4" fill="#16181d" opacity=".22"/>
+    <rect x="390" y="880" width="130" height="130" rx="65" fill="#ffa14a"/>
+    <rect x="575" y="830" width="120" height="180" rx="14" fill="#ccff33"/>
+    <rect x="750" y="900" width="300" height="110" rx="14" fill="#b09bff"/>
+    <rect x="775" y="935" width="180" height="14" rx="4" fill="#16181d" opacity=".22"/>
+  </g>
+
+  <!-- scan brackets around the lime box -->
+  <g stroke="#ccff33" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M660 600 V540 H720"/>
+    <path d="M900 540 H960 V600" transform="translate(-70 0)"/>
+    <path d="M660 800 V860 H720" transform="translate(0 -40)"/>
+    <path d="M890 820 V820 M830 820 H890 V760" transform="translate(0 0)"/>
+  </g>
+  <rect x="640" y="700" width="260" height="6" fill="#ccff33" opacity=".9"/>
+  <rect x="640" y="700" width="260" height="60" fill="#ccff33" opacity=".08"/>
+
+  <!-- arrow to cache / recipe -->
+  <g stroke="#ffffff" stroke-opacity=".55" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1130 690 C 1200 690, 1220 500, 1300 500"/>
+    <path d="M1130 690 C 1200 690, 1220 880, 1300 880" stroke-dasharray="4 18"/>
+  </g>
+
+  <!-- cache: titles only -->
+  <g>
+    <rect x="1300" y="330" width="560" height="340" rx="22" fill="#20242c" stroke="#3a4050" stroke-width="3"/>
+    <rect x="1340" y="378" width="180" height="16" rx="8" fill="#ccff33"/>
+    <rect x="1340" y="440" width="440" height="52" rx="12" fill="#2a2e37"/>
+    <rect x="1364" y="458" width="260" height="16" rx="8" fill="#ffffff" opacity=".8"/>
+    <rect x="1340" y="510" width="440" height="52" rx="12" fill="#2a2e37"/>
+    <rect x="1364" y="528" width="330" height="16" rx="8" fill="#ffffff" opacity=".8"/>
+    <rect x="1340" y="580" width="440" height="52" rx="12" fill="#2a2e37"/>
+    <rect x="1364" y="598" width="210" height="16" rx="8" fill="#ffffff" opacity=".8"/>
+    <circle cx="1830" cy="356" r="10" fill="#ccff33"/>
+  </g>
+
+  <!-- lazy recipe card (dashed until asked) -->
+  <g>
+    <rect x="1300" y="780" width="560" height="340" rx="22" fill="none" stroke="#b09bff" stroke-width="5" stroke-dasharray="14 14"/>
+    <rect x="1340" y="826" width="200" height="16" rx="8" fill="#b09bff"/>
+    <rect x="1340" y="880" width="440" height="12" rx="6" fill="#ffffff" opacity=".22"/>
+    <rect x="1340" y="912" width="400" height="12" rx="6" fill="#ffffff" opacity=".22"/>
+    <rect x="1340" y="944" width="430" height="12" rx="6" fill="#ffffff" opacity=".22"/>
+    <rect x="1340" y="976" width="300" height="12" rx="6" fill="#ffffff" opacity=".22"/>
+    <rect x="1340" y="1040" width="160" height="44" rx="22" fill="#ccff33"/>
+  </g>
+</svg>

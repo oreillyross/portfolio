@@ -2,8 +2,8 @@
 publishDate: 2026-09-29T00:00:00Z
 title: I Stopped Writing Every Line of Code. Here's What I Do Instead.
 excerpt: My laptop used to be my development environment. Now I'm building a small system of me, AI agents, tests, evals and persistent machines, and the hard part isn't getting an LLM to write code.
-image: ~/assets/images/nature.jpg
-imageAlt: A quiet natural landscape
+image: ~/assets/images/post-how-i-work.png
+imageAlt: A terminal running Claude Code with failing evals beside a loop of define, agent, evals and review around a person
 category: How I work
 tags:
   - claude code
