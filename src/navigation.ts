@@ -6,6 +6,7 @@ const GITHUB = 'https://github.com/oreillyross';
 
 export const headerData = {
   links: [
+    { text: 'North star', href: getPermalink('/#north-star') },
     { text: 'Work', href: getPermalink('/#work') },
     { text: 'Stack', href: getPermalink('/#stack') },
     { text: 'Studio', href: getPermalink('/#studio') },

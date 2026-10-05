@@ -11,42 +11,71 @@ import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
 
 const metadata = {
-  title: "Haagsoft — DevGuy, agentic AI SaaS",
+  title: 'Haagsoft — Reliable agentic AI, built in TypeScript',
   ignoreTitleTemplate: true,
 };
 
 const EMAIL = 'devguy@duck.com';
 
 const marquee = [
-  'TypeScript everywhere',
+  'Agentic reliability',
+  'North star first',
+  'Spec → eval → ship',
   'Evals before vibes',
-  'Agent reliability',
   'Harness engineering',
-  'RAG pipelines',
-  'Vector search',
-  'Sustainable software',
+  'Human in the loop',
+  'Type-safe TypeScript',
+];
+
+const northStar = [
+  {
+    title: 'Define it',
+    text: 'One written sentence of what good looks like, plus constraints and a definition of done, in a spec the agent reads on every run. If I can’t write it down, the agent can’t follow it.',
+  },
+  {
+    title: 'Measure it',
+    text: 'Evals grade each run against the north star: fixed datasets, scored outputs, regressions caught before users see them. A prompt or model change becomes a measured decision.',
+  },
+  {
+    title: 'Hold it',
+    text: 'The harness keeps the agent on course: typed tool contracts, bounded loops, guardrails, retries, tracing and a human checkpoint wherever a wrong move is expensive.',
+  },
+];
+
+const loop = [
+  { step: 'Spec', text: 'Goal, constraints, definition of done. Short, written, versioned with the code.' },
+  {
+    step: 'Context',
+    text: 'Only what the agent needs: the right files, tools and examples, nothing that distracts it.',
+  },
+  { step: 'Build', text: 'Small slices the agent can finish and I can read in one sitting.' },
+  {
+    step: 'Verify',
+    text: 'Tests where state changes, evals where the model decides. Output is a claim until checked.',
+  },
+  { step: 'Review', text: 'I read every diff. Autonomy is earned by eval scores, not granted by optimism.' },
 ];
 
 const principles = [
   {
-    title: 'Ship iteratively, spec-driven',
-    text: 'Write the spec, cut it to the smallest honest slice, get it live. Complexity is layered onto something real — never designed into something imaginary.',
+    title: 'North star before code',
+    text: 'Every build starts with what good looks like, written down. The spec, the evals and the harness all point at it, so the agent has something to follow and I have something to measure against.',
   },
   {
-    title: 'Semantic HTML first',
-    text: 'Start with the bare minimum markup that works for everyone. Polish, animation and component libraries arrive after the thing is usable, not instead of it.',
+    title: 'Verify, don’t trust',
+    text: 'Generating code and behaviour is cheap now; checking it is the real work. I design for review: small diffs, typed boundaries, tests on state changes and evals on anything the model decides.',
   },
   {
-    title: 'Hot-swappable infrastructure',
-    text: 'Every provider is a rental. Railway, Fly.io, Vercel, Vultr, Hetzner — chosen because the exit is cheap, and the app can move in an afternoon.',
+    title: 'Constrain the agent',
+    text: 'Least-privilege tools, schemas the model can’t wriggle out of, bounded loops and explicit stop conditions. Reliability comes from the boundaries, not from a cleverer prompt.',
   },
   {
-    title: 'Right-sized tooling',
-    text: 'Solopreneur-appropriate infra beats enterprise ceremony. One language full-stack, one deploy target, one person who can hold the whole system in their head.',
+    title: 'Keep a human where wrong is expensive',
+    text: 'Irreversible or costly actions get an approval step. As an agent’s eval scores hold up over time, the leash gets longer; never before.',
   },
   {
-    title: 'Test what changes state — eval what thinks',
-    text: 'Tests follow interaction and data, the moments where state moves. Agent behaviour gets evals: fixed datasets, graded runs, regressions caught before users see them.',
+    title: 'Ship small, stay swappable',
+    text: 'Spec-driven slices, semantic HTML first, one language full-stack. Every provider is a rental, so Railway, Fly.io, Vercel, Vultr or Hetzner is chosen because the exit is cheap.',
   },
 ];
 
@@ -57,7 +86,10 @@ const stack = [
     dt: 'AI & agentic',
     dd: 'Claude API (vision + text) · LangChain · type-safe tool schemas · RAG pipelines · vector databases',
   },
-  { dt: 'Reliability', dd: 'Evals and graded datasets · tracing · harness engineering · guardrails and retries' },
+  {
+    dt: 'Reliability',
+    dd: 'North-star specs · evals and graded datasets · tracing · harness engineering · guardrails, retries and human checkpoints',
+  },
   { dt: 'ML & data', dd: 'Python · scikit-learn · pandas · numpy' },
   { dt: 'Infra & delivery', dd: 'Docker · Kubernetes · GitHub Actions · Terraform' },
   { dt: 'Hosting', dd: 'Vercel · Railway · Fly.io · Vultr · Hetzner storage' },
@@ -100,28 +132,30 @@ const structuredData = [
     </div>
     <div class="relative mx-auto max-w-6xl px-4 sm:px-6 pt-10 md:pt-[140px] pb-16 md:pb-24">
       <div class="flex flex-wrap gap-2 font-mono text-xs uppercase tracking-[0.14em]">
-        <span class="rounded-full border border-rule px-3 py-1 text-muted">Solo studio · Durban, ZA</span>
+        <span class="rounded-full border border-rule px-3 py-1 text-muted">Solo studio · The Hague, NL</span>
         <span class="inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3 py-1 text-default">
           <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full rounded-full bg-lime opacity-75 motion-safe:animate-ping"></span>
+            <span class="absolute inline-flex h-full w-full rounded-full bg-lime opacity-75 motion-safe:animate-ping"
+            ></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-lime ring-1 ring-ink/20"></span>
           </span>
           Available for one new build
         </span>
       </div>
 
-      <h1 class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.92] text-[clamp(3.25rem,11vw,8.5rem)]">
-        <span class="hs-line"><span>Agentic</span></span>
-        <span class="hs-line"><span>AI <em class="not-italic text-primary">SaaS</em>,</span></span>
-        <span class="hs-line"><span>shipped in</span></span>
-        <span class="hs-line"><span>slices.</span></span>
+      <h1
+        class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.92] text-[clamp(3.25rem,11vw,8.5rem)]"
+      >
+        <span class="hs-line"><span>Agents that</span></span>
+        <span class="hs-line"><span>follow the</span></span>
+        <span class="hs-line"><span class="text-primary">north star.</span></span>
       </h1>
 
       <div class="mt-10 grid gap-8 md:grid-cols-[minmax(0,34rem)_auto] md:items-end md:justify-between">
         <p class="text-lg md:text-xl text-muted">
-          I'm <strong class="text-heading font-semibold">DevGuy</strong>. Haagsoft is my one-person studio:
-          small, independently deployable AI products in type-safe TypeScript, made reliable with evals and a proper
-          harness. Spec-driven, MVP-first, no over-planning.
+          I'm <strong class="text-heading font-semibold">DevGuy</strong>. Haagsoft is my one-person studio. I build
+          agentic AI products in type-safe TypeScript and make them reliable: a written goal, evals that measure it and
+          a harness that keeps every run pointed at it.
         </p>
         <div class="flex flex-wrap gap-3">
           <a class="btn-primary" href="#work">See the work</a>
@@ -148,39 +182,70 @@ const structuredData = [
     </div>
   </div>
 
-  <!-- 01 Manifesto -->
-  <Section id="manifesto">
-    <Reveal><SectionLabel n="01">Manifesto</SectionLabel></Reveal>
-    <p class="hs-light-up mt-8 font-heading text-heading font-medium tracking-[-0.02em] leading-[1.12] text-[clamp(1.75rem,4.2vw,3.25rem)] text-balance">
-      Haagsoft is a microservices-first studio run by one person. Many small, independently deployable apps — each on
-      its own <span class="text-primary">haagsoft.xyz</span> subdomain — that stand alone or compound, sized to ship fast
-      and prove value before they earn more investment.
+  <!-- 01 North star -->
+  <Section id="north-star">
+    <Reveal><SectionLabel n="01">The north star</SectionLabel></Reveal>
+    <p
+      class="hs-light-up mt-8 font-heading text-heading font-medium tracking-[-0.02em] leading-[1.12] text-[clamp(1.75rem,4.2vw,3.25rem)] text-balance"
+    >
+      An agent without a north star is just a fast way to be wrong. Agentic reliability starts by writing down what
+      <span class="text-primary">good</span> looks like, then building everything else to point at it.
     </p>
-    <div class="mt-12 grid gap-8 md:grid-cols-2 text-lg text-muted">
-      <Reveal as="p">
-        The long game is to be a boutique agentic AI developer: LLM-powered interfaces, real-time inference, vector
-        search and semantic UX applied to ordinary problems — pantries, news, habits, households.
-      </Reveal>
-      <Reveal as="p">
-        The short game is a live URL. Semantic HTML before component libraries. Hot-swappable infrastructure over vendor
-        lock-in. Tests where state changes, evals where the model decides.
-      </Reveal>
-    </div>
+    <ol class="mt-12 grid list-none gap-6 p-0 md:grid-cols-3">
+      {
+        northStar.map(({ title, text }, i) => (
+          <Reveal as="li" class="border-t-2 border-primary pt-6">
+            <span class="font-mono text-sm text-primary">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 font-heading text-2xl font-bold text-heading">{title}</h3>
+            <p class="mt-3 text-muted">{text}</p>
+          </Reveal>
+        ))
+      }
+    </ol>
   </Section>
 
-  <!-- 02 How I work: sticky card stack on desktop -->
-  <Section id="studio" band>
+  <!-- 02 The loop -->
+  <Section id="loop" band>
+    <Reveal><SectionLabel n="02">The loop</SectionLabel></Reveal>
+    <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance">
+      AI makes the first draft fast. Reliability is the rest.
+    </Reveal>
+    <Reveal as="p" class="mt-6 max-w-2xl text-lg text-muted">
+      Getting an agent to look right is easy. Getting it to be right on the hundredth run is engineering. Every build
+      goes round the same loop, and nothing ships past a step it hasn't passed.
+    </Reveal>
+    <ol class="mt-12 grid list-none gap-4 p-0 md:grid-cols-5">
+      {
+        loop.map(({ step, text }, i) => (
+          <Reveal as="li" class="rounded-2xl border border-rule bg-surface p-5">
+            <span class="font-mono text-sm text-primary">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 font-heading text-xl font-bold text-heading">{step}</h3>
+            <p class="mt-2 text-sm text-muted">{text}</p>
+          </Reveal>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <!-- 03 How I work: sticky card stack on desktop -->
+  <Section id="studio">
     <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
       <div class="md:sticky md:top-28 md:self-start">
-        <Reveal><SectionLabel n="02">How I work</SectionLabel></Reveal>
-        <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance">
+        <Reveal><SectionLabel n="03">How I work</SectionLabel></Reveal>
+        <Reveal
+          as="h2"
+          class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance"
+        >
           Five rules that decide every trade-off.
         </Reveal>
       </div>
       <ol class="list-none p-0 m-0 space-y-6">
         {
           principles.map((p, i) => (
-            <li class="md:sticky rounded-2xl border border-rule bg-surface p-6 md:p-8 shadow-sm" style={`top: calc(7rem + ${i} * 1.25rem)`}>
+            <li
+              class="md:sticky rounded-2xl border border-rule bg-surface p-6 md:p-8 shadow-sm"
+              style={`top: calc(7rem + ${i} * 1.25rem)`}
+            >
               <span class="font-mono text-sm text-primary">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="mt-3 font-heading text-2xl font-bold tracking-tight text-heading">{p.title}</h3>
               <p class="mt-3 text-muted">{p.text}</p>
@@ -195,13 +260,14 @@ const structuredData = [
   <Section id="work">
     <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <Reveal><SectionLabel n="03">Active builds</SectionLabel></Reveal>
+        <Reveal><SectionLabel n="04">Active builds</SectionLabel></Reveal>
         <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading">
-          In progress, in public.
+          Proof, in public.
         </Reveal>
       </div>
       <Reveal as="p" class="max-w-sm text-muted">
-        Live apps open on their own subdomain. Everything else is being built in the open.
+        Each build is a testbed for the loop above. Live apps open on their own haagsoft.xyz subdomain; the rest is
+        built in the open.
       </Reveal>
     </div>
     <ul class="mt-12 grid list-none gap-6 p-0 md:grid-cols-2">
@@ -217,9 +283,9 @@ const structuredData = [
 
   <!-- 04 Stack -->
   <Section id="stack" band>
-    <Reveal><SectionLabel n="04">Stack</SectionLabel></Reveal>
+    <Reveal><SectionLabel n="05">Stack</SectionLabel></Reveal>
     <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading">
-      One language, full-stack velocity.
+      Type-safe from database to tool schema.
     </Reveal>
     <dl class="mt-12 border-t border-rule">
       {
@@ -233,16 +299,18 @@ const structuredData = [
     </dl>
   </Section>
 
-  <!-- 05 The coworker -->
+  <!-- 06 Human in the loop -->
   <Section container="max-w-5xl">
     <div aria-hidden="true" slot="bg">
       <div class="hs-glow top-10 right-0 h-80 w-80 bg-blue"></div>
     </div>
-    <Reveal><SectionLabel n="05">The coworker</SectionLabel></Reveal>
+    <Reveal><SectionLabel n="06">Human in the loop</SectionLabel></Reveal>
     <blockquote class="mt-8">
-      <p class="hs-light-up font-heading text-heading font-medium tracking-[-0.02em] leading-[1.15] text-[clamp(1.6rem,3.6vw,2.75rem)] text-balance">
-        Claude is a collaborative coworker, not autocomplete — an iterative development partner for architecture, review
-        and the harness engineering layer that turns a model into a product.
+      <p
+        class="hs-light-up font-heading text-heading font-medium tracking-[-0.02em] leading-[1.15] text-[clamp(1.6rem,3.6vw,2.75rem)] text-balance"
+      >
+        Claude is a collaborator, not autocomplete. It drafts fast; I stay accountable. Every output is a pull request
+        from a quick, confident junior: read it, run it, test it, then merge it.
       </p>
     </blockquote>
     <Reveal as="p" class="mt-8 max-w-2xl text-muted">
@@ -252,7 +320,12 @@ const structuredData = [
 
   <!-- Writing -->
   <div class="bg-band">
-    <BlogLatestPosts id="writing" title="Build logs & decisions" information="How the apps above were built, what broke, and why the design ended up the way it did." count={3} />
+    <BlogLatestPosts
+      id="writing"
+      title="Build logs & decisions"
+      information="How the apps above were built, what broke, and why the design ended up the way it did."
+      count={3}
+    />
   </div>
 
   <!-- 06 Contact -->
@@ -261,9 +334,11 @@ const structuredData = [
       <div class="hs-glow -bottom-40 left-1/4 h-[30rem] w-[30rem] bg-lime"></div>
       <div class="hs-glow -top-20 right-0 h-80 w-80 bg-amber"></div>
     </div>
-    <Reveal><SectionLabel n="06">Contact</SectionLabel></Reveal>
-    <h2 class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.95] text-[clamp(2.75rem,8vw,6.5rem)]">
-      Let's build something small <span class="text-primary">that compounds.</span>
+    <Reveal><SectionLabel n="07">Contact</SectionLabel></Reveal>
+    <h2
+      class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.95] text-[clamp(2.75rem,8vw,6.5rem)]"
+    >
+      Let's build an agent <span class="text-primary">you can trust.</span>
     </h2>
     <div class="mt-12 flex flex-wrap gap-3">
       <a class="btn-primary" href={`mailto:${EMAIL}`}>{EMAIL}</a>
