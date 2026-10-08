@@ -1,48 +1,131 @@
-My coding workflow
+---
+publishDate: 2026-10-08T00:00:00Z
+title: My coding workflow
+excerpt: Developers hand more of the coding to agents and still finish the day exhausted. Here's my current workflow, from an empty GitHub repo and a scratchpad to small agent iterations, and my ongoing journey to find flow.
+image: ~/assets/images/post-coding-workflow.png
+imageAlt: A circuit board of dark traces feeding a docs folder card listing scratchpad, vision, roadmap, techstack and tasks files, with one green signal path running through it
+category: How I work
+tags:
+  - claude code
+  - workflow
+  - flow
+  - solopreneur
+author: Ross O'Reilly
+---
 
-It's early October 2026, and I have noticed a recurring theme on the tech X sphere. There seems to be a recurring theme of developers on the one hand seeming to be more productive with handing off in some cases all of the coding tasks. Some veteran developers have even suggested that they no longer even look at code at all anymore. Yet on the other hand they finish the day feeling exhausted. There is some speculation as to why this might be the case. Some suggest its that now that the agent is doing most of the head racking work, the really cognitive work where as a developer if you can enter into a flow state is a sort of nirvanic (not sure if this word exists) feeling, the developer is now left typing a vague prompt, awaiting a response, either a plan, or guidance, clicking approve, giving some more vague feedback and then watching the agent grind away to present the developer with a pull request, a pretty detailed merge commit and so the cycle repeats itself.
+_October 2026 · a work in progress_
 
-What I have also taken away from this process is the fact that very really does one get broken code, so the journey through debugging frustration, and the joy on the other end is no longer something a developer can look forward to. The coding game has genuinely changed forever. And that ok, it will take some longer to adjust than others, some might never recover and that is ok too, to explore what else the world has to offer other than sitting at a nvim terminal, using sed and grep manually to tease out where subtle bugs may lie in the code base, or heck just centering a div. Its all gone and replaced by agentic dashboard, like Claude code, Devin, Codex, Github Copilot, Pi.
+It's early October 2026, and I've noticed a recurring theme on tech X. On the one hand, developers seem to be more productive by handing off some, and in some cases all, of their coding tasks. Some veteran developers have even said they no longer look at the code at all. Yet on the other hand, they finish the day feeling exhausted.
 
-I would like to present my current workflow, and my journey to find flow. Which funnily enough started years before this agentic ai revolution. And so I continue on this journey albeit with re-defined constraints and working practices.
+There's some speculation as to why. Some suggest it's because the agent now does most of the head-wracking work, the really cognitive work. That's the work where, if you can enter a flow state, you get a sort of nirvanic feeling (not sure that's a word). Instead the developer is left typing a vague prompt, awaiting a response (either a plan or some guidance), clicking approve, giving some more vague feedback, and then watching the agent grind away until it presents a pull request with a pretty detailed merge commit. And so the cycle repeats itself.
 
-So here goes. Firstly I work predominantly in a browser. My bootstrap sequence to staring a project or app. Is to create a new Github repo. leave it empty and through the browser console add a file. Usually this is a very basic scratchpad.md file which details the rough back of the napkin description of what I am trying to create. Some may think it odd to start straight away in a github repo but I find that context switching from a coding agent terminal or console chat window to a repo back and forth is going against the idea of staying in flow. And my goal is to keep refining my workflow on my journey to find flow.
+What I've also taken away from this process is that very rarely does one get broken code. So the journey through debugging frustration, and the joy on the other side of it, is no longer something a developer can look forward to.
 
-This core file forms the nucleus of all the other array of files which come together to inform the context window on the application building process. And it doesn't matter what app I am building, a backend cron job, web server, email client, web app, React Native, whatever, the process is independent of the coding language, frameworks, or api, MCP services I use.
+The coding game has genuinely changed forever. And that's OK. It will take some longer to adjust than others, and some might never recover, and that's OK too. There's a lot the world has to offer other than sitting at an nvim terminal, using sed and grep by hand to tease out where subtle bugs lie in the codebase, or heck, just centering a div. It's all gone, replaced by agentic dashboards like Claude Code, Devin, Codex, GitHub Copilot and Pi. (I wrote more about that shift in [The IDE is becoming a control room](/blog/the-ide-is-becoming-a-control-room).)
 
-I git Commit and jump to my coding terminal. Again my default is in the browser and I use Claude Code in the browser with my account linking my GitHub repository forming a nice natural extension of my workspace into the cloud.
+So I'd like to present my current workflow, and my journey to find flow. Funnily enough, that journey started years before this agentic AI revolution, and I continue on it now, albeit with redefined constraints and working practices.
 
-I select the repository, Choose a model, usually Opus 5.5 or Sonnet 5-5 and medium effort is sufficient. Then ask the coding agent to build out a Claude.md fil in the docs folder. A vision.md file, roadmap.md, techstack.md file (super important, as Claude and others have really strong opinions about their default stack based on their training data.)  and a single tasks.md file for the sort of bootstrapping stage. The rest of the features if already described in the scratchpad.md file get appended as Task 2 .. 3 etc, in the roadmap where I can pull them out and work on them iteratively.
+So here goes.
 
-Segue: This is a good moment to step away from the process and provide some clarity on my approach. What I noticed is that the frontier models are really good these days at long running, multi turn coding tasks. And whatever you ask them to build they will confidently produce something, which in almost all cases is something you did not think you wanted. It could look flashy, have some crazy functionality but is it meeting the brief. I would argue it might get to an MVP but its highly unlikely to get you all the way to a piece of production grade software people would be willing to pay for. Hence the iterative approach, broken down by granular tasks and inspecting the work each step of the way being able to readjust in tiny increments to get the desired MVP, and much later a production grade reliable piece of software.
-end of segue
+## start in the repo
 
-After round one having merged the pull request created by claude I usually have a reasonable set of files which can be used to guide the agentic iterative development (AID)TM. Just kidding, but seriosuly is anyone using this term yet?
+Firstly, I work predominantly in a browser. My bootstrap sequence for starting a project or app is:
 
-If its a web app I usually also run a Style_Guide skill I setup. Check out my prompt for that [Style_Generation.prompt https://github.com/oreillyross/AI_Prompts/blob/main/Style_Generation.prompt]. Pick one of the styles I think would fit the theming, and ask it to expand on the number. Then I copy those instructions into a styles.md file in the docs folder to guide  the coding agent on future iterations of the styling. It is important this step happens early on otherwise you end up fighting with the models interpretation, and assumptions about what it thinks it should produce. And remember it has no feelings so it confidently builds and thinks its doing the right thing (always).
+1. Create a new GitHub repo and leave it empty.
+2. Add a file through the browser. Usually this is a very basic `scratchpad.md` with a rough, back-of-the-napkin description of what I'm trying to create.
+3. Commit.
 
-From there on out it multiple small iterations of the same loop. I have a few workflow specific tricks I am using, and as I have said before this is a work in progress on my journey to find flow in the world of AID.
+Some may think it odd to start straight away in a GitHub repo, but I find that context switching back and forth between a coding agent terminal or chat window and a repo goes against the idea of staying in flow. And my goal is to keep refining my workflow on my journey to find flow.
 
-I use a self built notes repo which I can quickly switch to to offload any thoughts which pop into my head. See the repo here, https://github.com/oreillyross/notes [TODO I need to make this public and then fork it into a private repo for my actual notes and personal work @Claude your thoughts on this please]
+This core file forms the nucleus of the whole array of other files that come together to inform the context window during the build. It doesn't matter what I'm building, a backend cron job, a web server, an email client, a web app, React Native, whatever. The process is independent of the language, frameworks, APIs or MCP services I use.
 
-I try not to get caught up in either of two default modes I find I enter after hitting the go button in Claude code, 1. Is switching to a news/ x / gmail tab and mindlessly scrolling for something to entertain / distrct me in a very shallow way. I am a strong opponent of multitasking. A very inefficient way of living. It has its place in the household, maybe some admin business setting, but I find it totally innapropriate in a coding session.
-2. Staring at the coding agent generated tasks its runnnig through, waiting in anticipation for a generated result.
+## hand it to the agent
 
-Instead I opt for an immediate switch either to a short form articel on a topic I am trying to Grok (and read it from start to finish before returning to check on the coding agent. It is sort of my in-built pomodoro timer, except its as long as it takes to read an article. Or continue in the scratchpad, revising, refactoring the next features that would be needed in the app, often jumping out into a new chat window to claude, chatGPT or perplexity to question what might be the feasible route further.
+After that commit I jump to my coding terminal. Again, my default is the browser: I use Claude Code on the web, with my account linked to my GitHub repositories, which forms a nice natural extension of my workspace into the cloud.
 
-Thats it for now, I am deeply excited in this space. Its an exciting time to be coding again, albeit under very different rules. Power to the agent. [Find a cool logo to represent this movement]
+I select the repository and choose a model, usually Opus 5.5 or Sonnet 5.5 (medium effort is sufficient). Then I ask the coding agent to build out a `CLAUDE.md` file and a `docs` folder:
 
+```text
+CLAUDE.md
+docs/
+  vision.md      what the app is, and why
+  roadmap.md     the features from scratchpad.md, as Task 2, Task 3 …
+  techstack.md   the stack I want, not the stack the model defaults to
+  tasks.md       the bootstrapping stage only
+```
 
+The `techstack.md` file is super important, because Claude and the others have really strong opinions about their default stack, based on their training data.
 
+The `tasks.md` file covers just the bootstrapping stage. Any other features already described in `scratchpad.md` get appended to the roadmap as Task 2, Task 3 and so on, where I can pull them out and work on them iteratively.
 
+## a short segue: why so iterative
 
+This is a good moment to step away from the process and give some clarity on my approach.
 
+What I've noticed is that the frontier models are really good these days at long-running, multi-turn coding tasks. Whatever you ask them to build, they will confidently produce something, and in almost all cases it's something you didn't think you wanted. It could look flashy, or have some crazy functionality, but is it meeting the brief?
 
+I'd argue it might get you to an MVP, but it's highly unlikely to get you all the way to production-grade software people would be willing to pay for. Hence the iterative approach:
 
+- the work is broken down into granular tasks
+- I inspect the work at each step of the way
+- I readjust in tiny increments to get to the desired MVP
 
+And much later, that's how it gets to a production-grade, reliable piece of software. (The reliability side of that loop is its own post: [I stopped writing every line of code](/blog/i-stopped-writing-every-line-of-code).)
 
+## lock in the style early
 
+After round one, having merged the pull request Claude created, I usually have a reasonable set of files to guide the agentic iterative development (AID)™. Just kidding, but seriously, is anyone using this term yet?
 
+If it's a web app, I also run a style guide skill I set up. Check out my prompt for that, [Style_Generation.prompt](https://github.com/oreillyross/AI_Prompts/blob/main/Style_Generation.prompt). I pick one of the styles I think fits the theming and ask it to expand on that number. Then I copy those instructions into a `styles.md` file in the docs folder to guide the coding agent on future iterations of the styling. Here's a taste of one, a style called Signal Ground:
 
+```text
+BUILD BRIEF: Signal Ground
 
+MOOD
+- Feels: precise, technical, low-lit. References: PCB silkscreen,
+  a well-configured terminal multiplexer.
+- Must not feel: hacker-movie, matrix rain, gamer RGB.
+- Voice for headings and microcopy: terse, lowercase-leaning,
+  command-like ("run it", "read the docs").
 
+COLOR (token: light / dark), dark is the default mode
+background: #F3F6F2 / #0A0F0D
+accent:     #0B6B3A / #3DDC84
+
+IMAGERY (SVG)
+- Motif: circuit traces running between pads and vias.
+- Orthogonal and 45° polylines only, one signal path per
+  illustration in accent.
+```
+
+It goes on to cover typography, shape, elements, motion and contrast checks. (It's also the style this post's cover and headings are wearing.)
+
+It's important this step happens early on, otherwise you end up fighting the model's interpretation of, and assumptions about, what it thinks it should produce. And remember, it has no feelings, so it confidently builds and thinks it's doing the right thing (always).
+
+## loop small
+
+From there on out, it's multiple small iterations of the same loop. I have a few workflow-specific tricks I'm using, and as I've said before, this is a work in progress on my journey to find flow in the world of AID.
+
+### offload thoughts fast
+
+I use a self-built [notes repo](https://github.com/oreillyross/notes) that I can quickly switch to and offload any thoughts that pop into my head.
+
+### don't scroll, don't stare
+
+After hitting the go button in Claude Code, I find there are two default modes I can easily get caught up in, and I try not to:
+
+1. **Switching to a news, X or Gmail tab** and mindlessly scrolling for something to entertain or distract me, in a very shallow way. I'm a strong opponent of multitasking. It's a very inefficient way of living. It has its place in the household, and maybe in some business admin, but I find it totally inappropriate in a coding session.
+2. **Staring at the tasks the coding agent is running through**, waiting in anticipation for the result.
+
+Instead I opt for an immediate switch to one of two things:
+
+- **A short-form article** on a topic I'm trying to grok, which I read from start to finish before returning to check on the coding agent. It's sort of my built-in pomodoro timer, except it lasts as long as it takes to read the article.
+- **The scratchpad.** I continue revising and refactoring the next features the app will need, often jumping out into a new chat window with Claude, ChatGPT or Perplexity to question what the feasible route forward might be.
+
+## that's it for now
+
+I'm deeply excited about this space. It's an exciting time to be coding again, albeit under very different rules.
+
+<img src="/images/blog/power-to-the-agent.svg" alt="A square bracket pair around a green block cursor" width="160" height="120" style="width:min(160px,40%);height:auto;margin:1rem 0;border-radius:2px" />
+
+Power to the agent.

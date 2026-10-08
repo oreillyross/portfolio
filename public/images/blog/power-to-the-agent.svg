@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" role="img"><title>A square bracket pair around a green block cursor</title>
+<rect width="160" height="120" rx="2" fill="#0A0F0D"/>
+<g fill="none" stroke="#D7E4DC" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"><polyline points="54,30 36,30 36,90 54,90"/><polyline points="106,30 124,30 124,90 106,90"/></g>
+<rect x="68" y="44" width="22" height="34" fill="#3DDC84"><animate attributeName="opacity" values="1;0" dur="1s" calcMode="discrete" repeatCount="indefinite"/></rect>
+</svg>
