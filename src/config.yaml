@@ -11,7 +11,7 @@ metadata:
   title:
     default: Haagsoft
     template: '%s — Haagsoft'
-  description: "Haagsoft is Ross O'Reilly's solo software studio: reliable agentic AI SaaS in TypeScript. A written north star, evals that measure it and a harness that keeps agents on course, shipped one small slice at a time."
+  description: "Haagsoft is Devguy's solo software studio: reliable agentic AI SaaS in TypeScript. A written north star, evals that measure it and a harness that keeps agents on course, shipping small, local, reliable products."
   robots:
     index: true
     follow: true

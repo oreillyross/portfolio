@@ -2,7 +2,7 @@
 
 ## What this site is
 
-Ross O'Reilly's personal solopreneur marketing site for **Haagsoft**
+Devguy's personal solopreneur marketing site for **Haagsoft**
 ([haagsoft.xyz](https://haagsoft.xyz)). It's a classic landing page that advertises the
 skillset and shows the work, as proof of building **reliable agentic AI software**. The core
 specialism is agentic reliability, evals and harness engineering, built on strong type-safe
@@ -86,3 +86,4 @@ vendor/integration/          # AstroWind config loader (astrowind:config virtual
 3. Visual check of the home page, `/about`, `/blog` and a post, in light and dark mode and
    at mobile width.
 4. The structured data in `src/pages/index.astro` is still true for Haagsoft.
+

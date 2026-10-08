@@ -2,7 +2,7 @@
 
 ![Haagsoft](docs/brand/preview.png)
 
-Studio site for **Haagsoft**, Ross O'Reilly's one-person software studio building agentic AI
+Studio site for **Haagsoft**, Devguy's one-person software studio building agentic AI
 SaaS in TypeScript, made reliable with evals and harness engineering.
 
 - **Landing page**: manifesto, principles, active builds, stack and contact.
@@ -47,4 +47,4 @@ pull request. The build is `npm run build` and the output is `dist/`. GitHub Act
 
 ## Licence
 
-Site content © Ross O'Reilly (`LICENSE`). Code derived from the AstroWind template is MIT licensed © onWidget; its notice is kept in `LICENSE-ASTROWIND.md`.
+Site content © Devguy (`LICENSE`). Code derived from the AstroWind template is MIT licensed © onWidget; its notice is kept in `LICENSE-ASTROWIND.md`.
