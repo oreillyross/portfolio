@@ -6,6 +6,7 @@ const GITHUB = 'https://github.com/oreillyross';
 
 export const headerData = {
   links: [
+    { text: 'Trust', href: getPermalink('/#trust') },
     { text: 'North star', href: getPermalink('/#north-star') },
     { text: 'Work', href: getPermalink('/#work') },
     { text: 'Stack', href: getPermalink('/#stack') },
@@ -21,6 +22,7 @@ export const footerData = {
     {
       title: 'Studio',
       links: [
+        { text: 'Why trust engineering', href: getPermalink('/#trust') },
         { text: 'Work', href: getPermalink('/#work') },
         { text: 'How I work', href: getPermalink('/#studio') },
         { text: 'Stack', href: getPermalink('/#stack') },

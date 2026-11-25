@@ -11,7 +11,7 @@ metadata:
   title:
     default: Haagsoft
     template: '%s — Haagsoft'
-  description: "Haagsoft is Devguy's solo software studio: reliable agentic AI SaaS in TypeScript. A written north star, evals that measure it and a harness that keeps agents on course, shipping small, local, reliable products."
+  description: 'Haagsoft is the solo studio of Devguy, a trust engineer. AI made code cheap to write and hard to trust; I build agentic AI SaaS in TypeScript with a written north star, evals that measure it and a harness that keeps agents on course.'
   robots:
     index: true
     follow: true

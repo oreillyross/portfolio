@@ -11,13 +11,15 @@ import { SITE, METADATA, I18N } from 'astrowind:config';
 import favIconSvg from '~/assets/favicons/favicon.svg';
 
 const metadata = {
-  title: 'Haagsoft — Reliable agentic AI, built in TypeScript',
+  title: 'Haagsoft — Trust engineering for agentic AI, in TypeScript',
   ignoreTitleTemplate: true,
 };
 
 const EMAIL = 'devguy@duck.com';
 
 const marquee = [
+  'Trust engineering',
+  'Evaluation is the bottleneck',
   'Agentic reliability',
   'North star first',
   'Spec → eval → ship',
@@ -27,10 +29,26 @@ const marquee = [
   'Type-safe TypeScript',
 ];
 
+// The review-bottleneck arithmetic behind "trust engineer".
+const bottleneck = [
+  {
+    label: 'Before AI',
+    written: '200',
+    writtenUnit: 'lines a day, per developer',
+    note: 'One reviewer covers several developers and still has time for their own work.',
+  },
+  {
+    label: 'With AI',
+    written: '1,600',
+    writtenUnit: 'lines a day, per developer',
+    note: 'The same reviewer now falls behind a single developer. Generation outran evaluation.',
+  },
+];
+
 const northStar = [
   {
     title: 'Define it',
-    text: 'One written sentence of what good looks like, plus constraints and a definition of done, in a spec the agent reads on every run. If I can’t write it down, the agent can’t follow it.'
+    text: 'One written sentence of what good looks like, plus constraints and a definition of done, in a spec the agent reads on every run. If I can’t write it down, the agent can’t follow it.',
   },
   {
     title: 'Measure it',
@@ -59,11 +77,11 @@ const loop = [
 const principles = [
   {
     title: 'North star before code',
-    text: 'Every build starts with what good looks like, written down. The spec, the evals and the harness all point at it, so the agent has something to follow and I have something to measure against.'
+    text: 'Every build starts with what good looks like, written down. The spec, the evals and the harness all point at it, so the agent has something to follow and I have something to measure against.',
   },
   {
     title: 'Verify, don’t trust',
-    text: 'Generating code and behaviour is cheap now; checking it is the real work. I design for review: small diffs, typed boundaries, tests on state changes and evals on anything the model decides.'
+    text: 'Generating code and behaviour is cheap now; checking it is the real work. I design for review: small diffs, typed boundaries, tests on state changes and evals on anything the model decides, so a human only reads what the machines couldn’t settle.',
   },
   {
     title: 'Constrain the agent',
@@ -88,7 +106,7 @@ const stack = [
   },
   {
     dt: 'Reliability',
-    dd: 'North-star specs · evals and graded datasets · tracing · harness engineering · guardrails, retries and human checkpoints',
+    dd: 'Trust engineering · north-star specs · evals and graded datasets · tracing · harness engineering · guardrails, retries and human checkpoints',
   },
   { dt: 'ML & data', dd: 'Python · scikit-learn · pandas · numpy' },
   { dt: 'Infra & delivery', dd: 'Docker · Kubernetes · GitHub Actions · Terraform' },
@@ -114,7 +132,7 @@ const structuredData = [
     name: SITE?.name,
     url: SITE?.site,
     logo: new URL(favIconSvg.src, SITE?.site).toString(),
-    founder: { '@type': 'Person', name: 'Devguy' },
+    founder: { '@type': 'Person', name: 'Devguy', jobTitle: 'Trust engineer' },
     sameAs: ['https://github.com/oreillyross'],
     description: METADATA?.description,
   },
@@ -132,7 +150,7 @@ const structuredData = [
     </div>
     <div class="relative mx-auto max-w-6xl px-4 sm:px-6 pt-10 md:pt-[140px] pb-16 md:pb-24">
       <div class="flex flex-wrap gap-2 font-mono text-xs uppercase tracking-[0.14em]">
-        <span class="rounded-full border border-rule px-3 py-1 text-muted">Solo studio · The Hague, NL</span>
+        <span class="rounded-full border border-rule px-3 py-1 text-muted">Trust engineer · The Hague, NL</span>
         <span class="inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3 py-1 text-default">
           <span class="relative flex h-2 w-2">
             <span class="absolute inline-flex h-full w-full rounded-full bg-lime opacity-75 motion-safe:animate-ping"
@@ -146,16 +164,17 @@ const structuredData = [
       <h1
         class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.92] text-[clamp(3.25rem,11vw,8.5rem)]"
       >
-        <span class="hs-line"><span>Agents that</span></span>
-        <span class="hs-line"><span>follow the</span></span>
-        <span class="hs-line"><span class="text-primary">north star.</span></span>
+        <span class="hs-line"><span>AI writes</span></span>
+        <span class="hs-line"><span>the code. I</span></span>
+        <span class="hs-line"><span class="text-primary">engineer trust.</span></span>
       </h1>
 
       <div class="mt-10 grid gap-8 md:grid-cols-[minmax(0,34rem)_auto] md:items-end md:justify-between">
         <p class="text-lg md:text-xl text-muted">
-          I'm <strong class="text-heading font-semibold">Devguy</strong>. Haagsoft is my one-person studio. I build
-          agentic AI products in type-safe TypeScript and make them reliable: a written goal, evals that measure it and
-          a harness that keeps every run pointed at it.
+          I'm <strong class="text-heading font-semibold">Devguy</strong>, a trust engineer. Haagsoft is my one-person
+          studio. Writing code is no longer the hard part; knowing it's right is. I build agentic AI products in
+          type-safe TypeScript with a written goal, evals that measure it and a harness that keeps every run pointed at
+          it.
         </p>
         <div class="flex flex-wrap gap-3">
           <a class="btn-primary" href="#work">See the work</a>
@@ -182,9 +201,47 @@ const structuredData = [
     </div>
   </div>
 
-  <!-- 01 North star -->
-  <Section id="north-star">
-    <Reveal><SectionLabel n="01">The north star</SectionLabel></Reveal>
+  <!-- 01 Trust -->
+  <Section id="trust">
+    <Reveal><SectionLabel n="01">Why trust engineering</SectionLabel></Reveal>
+    <p
+      class="hs-light-up mt-8 font-heading text-heading font-medium tracking-[-0.02em] leading-[1.12] text-[clamp(1.75rem,4.2vw,3.25rem)] text-balance"
+    >
+      AI shifts the core skill of software development from writing code to{' '}
+      <span class="text-primary">engineering trust.</span>
+    </p>
+    <Reveal as="p" class="mt-8 max-w-2xl text-lg text-muted">
+      Do the arithmetic of code review. A careful reviewer can examine about 400 lines an hour before quality slips.
+      That number hasn't changed. What changed is how much arrives.
+    </Reveal>
+    <ul class="mt-12 grid list-none gap-6 p-0 md:grid-cols-2">
+      {
+        bottleneck.map(({ label, written, writtenUnit, note }, i) => (
+          <Reveal
+            as="li"
+            class={`rounded-2xl border p-6 md:p-8 ${i === 1 ? 'border-primary bg-surface' : 'border-rule bg-surface'}`}
+          >
+            <span class="font-mono text-sm uppercase tracking-[0.12em] text-primary">{label}</span>
+            <p class="mt-4 font-heading text-heading">
+              <span class="text-5xl md:text-6xl font-bold tracking-[-0.03em]">{written}</span>
+              <span class="mt-1 block text-default">{writtenUnit}</span>
+            </p>
+            <p class="mt-4 font-mono text-sm text-muted">Review capacity: 400 lines an hour</p>
+            <p class="mt-3 text-muted">{note}</p>
+          </Reveal>
+        ))
+      }
+    </ul>
+    <Reveal as="p" class="mt-12 max-w-2xl text-lg text-default">
+      The bottleneck moved from generation to evaluation. You can't fix that by reading faster, so I engineer the trust
+      instead: specs that say what good looks like, evals that check it on every run, and a harness that stops bad
+      output before a human ever has to read it.
+    </Reveal>
+  </Section>
+
+  <!-- 02 North star -->
+  <Section id="north-star" band>
+    <Reveal><SectionLabel n="02">The north star</SectionLabel></Reveal>
     <p
       class="hs-light-up mt-8 font-heading text-heading font-medium tracking-[-0.02em] leading-[1.12] text-[clamp(1.75rem,4.2vw,3.25rem)] text-balance"
     >
@@ -204,11 +261,11 @@ const structuredData = [
     </ol>
   </Section>
 
-  <!-- 02 The loop -->
-  <Section id="loop" band>
-    <Reveal><SectionLabel n="02">The loop</SectionLabel></Reveal>
+  <!-- 03 The loop -->
+  <Section id="loop">
+    <Reveal><SectionLabel n="03">The loop</SectionLabel></Reveal>
     <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance">
-      AI makes the first draft fast. Reliability is the rest.
+      AI makes the first draft fast. Trust is the rest.
     </Reveal>
     <Reveal as="p" class="mt-6 max-w-2xl text-lg text-muted">
       Getting an agent to look right is easy. Getting it to be right on the hundredth run is engineering. Every build
@@ -227,11 +284,11 @@ const structuredData = [
     </ol>
   </Section>
 
-  <!-- 03 How I work: sticky card stack on desktop -->
-  <Section id="studio">
+  <!-- 04 How I work: sticky card stack on desktop -->
+  <Section id="studio" band>
     <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] md:gap-16">
       <div class="md:sticky md:top-28 md:self-start">
-        <Reveal><SectionLabel n="03">How I work</SectionLabel></Reveal>
+        <Reveal><SectionLabel n="04">How I work</SectionLabel></Reveal>
         <Reveal
           as="h2"
           class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading text-balance"
@@ -256,11 +313,11 @@ const structuredData = [
     </div>
   </Section>
 
-  <!-- 03 Work -->
+  <!-- 05 Work -->
   <Section id="work">
     <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <Reveal><SectionLabel n="04">Active builds</SectionLabel></Reveal>
+        <Reveal><SectionLabel n="05">Active builds</SectionLabel></Reveal>
         <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading">
           Proof, in public.
         </Reveal>
@@ -281,9 +338,9 @@ const structuredData = [
     </ul>
   </Section>
 
-  <!-- 04 Stack -->
+  <!-- 06 Stack -->
   <Section id="stack" band>
-    <Reveal><SectionLabel n="05">Stack</SectionLabel></Reveal>
+    <Reveal><SectionLabel n="06">Stack</SectionLabel></Reveal>
     <Reveal as="h2" class="mt-6 font-heading text-4xl md:text-5xl font-bold tracking-tight text-heading">
       Type-safe from database to tool schema.
     </Reveal>
@@ -299,12 +356,12 @@ const structuredData = [
     </dl>
   </Section>
 
-  <!-- 06 Human in the loop -->
+  <!-- 07 Human in the loop -->
   <Section container="max-w-5xl">
     <div aria-hidden="true" slot="bg">
       <div class="hs-glow top-10 right-0 h-80 w-80 bg-blue"></div>
     </div>
-    <Reveal><SectionLabel n="06">Human in the loop</SectionLabel></Reveal>
+    <Reveal><SectionLabel n="07">Human in the loop</SectionLabel></Reveal>
     <blockquote class="mt-8">
       <p
         class="hs-light-up font-heading text-heading font-medium tracking-[-0.02em] leading-[1.15] text-[clamp(1.6rem,3.6vw,2.75rem)] text-balance"
@@ -328,13 +385,13 @@ const structuredData = [
     />
   </div>
 
-  <!-- 06 Contact -->
+  <!-- 08 Contact -->
   <Section id="contact" container="max-w-6xl">
     <div aria-hidden="true" slot="bg">
       <div class="hs-glow -bottom-40 left-1/4 h-[30rem] w-[30rem] bg-lime"></div>
       <div class="hs-glow -top-20 right-0 h-80 w-80 bg-amber"></div>
     </div>
-    <Reveal><SectionLabel n="07">Contact</SectionLabel></Reveal>
+    <Reveal><SectionLabel n="08">Contact</SectionLabel></Reveal>
     <h2
       class="mt-8 font-heading font-bold text-heading tracking-[-0.04em] leading-[0.95] text-[clamp(2.75rem,8vw,6.5rem)]"
     >
