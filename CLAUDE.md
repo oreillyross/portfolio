@@ -4,7 +4,10 @@
 
 Devguy's personal solopreneur marketing site for **Haagsoft**
 ([haagsoft.xyz](https://haagsoft.xyz)). It's a classic landing page that advertises the
-skillset and shows the work, as proof of building **reliable agentic AI software**. The core
+skillset and shows the work, as proof of building **reliable agentic AI software**. Devguy's
+title is **Trust engineer**, and that's the USP: AI shifts the core skill of software from
+writing code to engineering trust, because generation now outpaces review (a reviewer still
+reads ~400 lines an hour, but one developer with AI can produce ~1,600 a day). The core
 specialism is agentic reliability, evals and harness engineering, built on strong type-safe
 TypeScript skills, with LangChain where it fits.
 
@@ -86,4 +89,3 @@ vendor/integration/          # AstroWind config loader (astrowind:config virtual
 3. Visual check of the home page, `/about`, `/blog` and a post, in light and dark mode and
    at mobile width.
 4. The structured data in `src/pages/index.astro` is still true for Haagsoft.
-
